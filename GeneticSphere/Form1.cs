@@ -12,11 +12,21 @@ namespace GeneticSphere
 {
     public partial class Form1 : Form
     {
+        enum FieldCellStatuses : byte
+        {
+            Empty = 0,// в ячейке ничего нет
+            Wall = 1,// в ячейке есть стена
+            Poison = 2,// в ячейке есть яд
+            Food = 3,// в ячейке есть еда
+            Frog = 4,// в ячейке есть лягушка
+            FrogMutant = 5// в ячейке есть лягушка мутант
+        }
+
         private Graphics _graphics;
         private int _resolution;
-        private bool[,] _field;
+        private FieldCellStatuses[ , ] _field;
         private int _rows;
-        private int _cols;
+        private int _cols;        
 
         public Form1()
         {
@@ -35,16 +45,15 @@ namespace GeneticSphere
 
             _resolution = (int)numResolution.Value;
 
-            _rows = pictureBox1.Height / _resolution;
-            _cols = pictureBox1.Width / _resolution;
-            _field = new bool[_cols, _rows];
+            _rows = 257;
+            _cols = 257;
+            _field = new FieldCellStatuses[_cols, _rows];            
 
-            var _random = new Random();
-            for (int x = 0; x < _cols; x++)
+            for (int x = 1; x < _cols - 1; x++)
             {
-                for (int y = 0; y < _rows; y++)
+                for (int y = 1; y < _rows - 1; y++)
                 {
-                    _field[x, y] = _random.Next((int)numDensity.Value) == 0;
+                    _field[x, y] = FieldCellStatuses.Empty;
                 }
             }
 
@@ -54,24 +63,74 @@ namespace GeneticSphere
             timer1.Start();
         }
 
+        private void SetFieldBoundaries()
+        {
+            for (int x = 0; x < _cols; x++)
+            {
+                for (int y = 0; y < _rows; y++)
+                {
+                    if ( (x == 0 || x == 256 && y >= 0) || (y == 0 || y == 256 && x >= 0) )
+                    {
+                        _field[x, y] = FieldCellStatuses.Wall;
+                    }   
+                }
+            }            
+        }
+
+        private Brush ChooseColoredBrush(FieldCellStatuses cellStatus)
+        {
+            Brush brush = Brushes.Black;
+
+            if (cellStatus == FieldCellStatuses.Empty)
+            {
+                brush = Brushes.Black;
+            }
+            if (cellStatus == FieldCellStatuses.Wall)
+            {
+                brush = Brushes.Blue;
+            }
+            if (cellStatus == FieldCellStatuses.Poison)
+            {
+                brush = Brushes.Red;
+            }
+            if (cellStatus == FieldCellStatuses.Food)
+            {
+                brush = Brushes.Black;
+            }
+            if (cellStatus == FieldCellStatuses.Frog)
+            {
+                brush = Brushes.Black;
+            }
+            if (cellStatus == FieldCellStatuses.FrogMutant)
+            {
+                brush = Brushes.Black;
+            }
+
+            return brush;
+        }
+
         private void NextGeneration()
         {
             _graphics.Clear(Color.Black);
+            SetFieldBoundaries();// установка границы вокруг болота
 
             var newField = new bool[_cols, _rows];
+
+            int offsetX = (pictureBox1.Width - _cols * _resolution) / 2 - 1;
+            int offsetY = (pictureBox1.Height - _rows * _resolution) / 2 - 1;
 
             for (int x = 0; x < _cols; x++)
             {
                 for (int y = 0; y < _rows; y++)
                 {
-                    // всякая логика
+                    Brush brush = ChooseColoredBrush(_field[x, y]);
 
-                    if (_field[x,y])
-                    {
-                        _graphics.FillRectangle(Brushes.Crimson, x * _resolution, y * _resolution, _resolution, _resolution);
-                    }
+                    _graphics.FillRectangle(brush, x * _resolution + offsetX, y * _resolution + offsetY, _resolution - 1, _resolution - 1);
                 }
             }
+
+            //_field = newField;
+
             pictureBox1.Refresh();
         }
 
