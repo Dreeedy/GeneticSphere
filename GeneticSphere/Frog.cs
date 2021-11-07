@@ -107,7 +107,9 @@ namespace GeneticSphere
 
         public Frog(int posX, int posY, FieldCellStatuses frogType = FieldCellStatuses.Frog)
         {
-            CreateGenome();
+            //CreateGenome();
+            GenerateGenome();
+
             IsAlive = true;
             _genePointer = 0;
             _whereIsLooking = FrogActions.LookAt0;// возможно устанавливать случайно
@@ -630,15 +632,14 @@ namespace GeneticSphere
         }
 
         private void GenerateGenome()
-        {          
-            /*for (int i = 0; i < _genome.Length; i++)
+        {
+            for (int i = 0; i < _genome.Length; i++)
             {
                 Random rnd = new Random();
                 int value = rnd.Next(0, 64);
 
-                _genome[i] = FrogActions[42];
-            }*/
-            
+                _genome[i] = ((FrogActions)value);
+            }
         }
 
         private void CreateGenome()
