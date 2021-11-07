@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,23 +11,25 @@ using System.Windows.Forms;
 
 namespace GeneticSphere
 {
+    enum FieldCellStatuses : byte
+    {
+        Empty = 0,// в ячейке ничего нет
+        Wall = 1,// в ячейке есть стена
+        Poison = 2,// в ячейке есть яд
+        Food = 3,// в ячейке есть еда
+        Frog = 4,// в ячейке есть лягушка
+        FrogMutant = 5// в ячейке есть лягушка мутант
+    }
+
     public partial class Form1 : Form
     {
-        enum FieldCellStatuses : byte
-        {
-            Empty = 0,// в ячейке ничего нет
-            Wall = 1,// в ячейке есть стена
-            Poison = 2,// в ячейке есть яд
-            Food = 3,// в ячейке есть еда
-            Frog = 4,// в ячейке есть лягушка
-            FrogMutant = 5// в ячейке есть лягушка мутант
-        }
-
         private Graphics _graphics;
         private int _resolution;
         private FieldCellStatuses[ , ] _field;
         private int _rows;
-        private int _cols;        
+        private int _cols;
+
+        private List<Frog> frogs = new List<Frog>();
 
         public Form1()
         {
@@ -59,6 +62,23 @@ namespace GeneticSphere
 
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(pictureBox1.Image);
+
+            SetFieldBoundaries();// установка границы вокруг поля
+            // создаю жаб
+            while (frogs.Count < 64)
+            {
+                // сгенерить позицию
+                Random rand = new Random();
+                int posX = rand.Next(50, 257);
+                int posY = rand.Next(50, 257);
+
+                if (_field[posX, posY] == FieldCellStatuses.Empty)
+                {
+                    var frog = new Frog(posX, posY);
+                    _field[posX, posY] = frog.FrogType;
+                    frogs.Add(frog);
+                }
+            }
 
             timer1.Start();
         }
@@ -99,11 +119,11 @@ namespace GeneticSphere
             }
             if (cellStatus == FieldCellStatuses.Frog)
             {
-                brush = Brushes.Black;
+                brush = Brushes.Aquamarine;
             }
             if (cellStatus == FieldCellStatuses.FrogMutant)
             {
-                brush = Brushes.Black;
+                brush = Brushes.Aqua;
             }
 
             return brush;
@@ -111,10 +131,9 @@ namespace GeneticSphere
 
         private void NextGeneration()
         {
+            // отрисовка старого кадра
             _graphics.Clear(Color.Black);
-            SetFieldBoundaries();// установка границы вокруг болота
-
-            var newField = new bool[_cols, _rows];
+            SetFieldBoundaries();// установка границы вокруг поля            
 
             int offsetX = (pictureBox1.Width - _cols * _resolution) / 2 - 1;
             int offsetY = (pictureBox1.Height - _rows * _resolution) / 2 - 1;
@@ -128,10 +147,24 @@ namespace GeneticSphere
                     _graphics.FillRectangle(brush, x * _resolution + offsetX, y * _resolution + offsetY, _resolution - 1, _resolution - 1);
                 }
             }
-
-            //_field = newField;
-
             pictureBox1.Refresh();
+
+            // логика нового кадра
+            var newField = new FieldCellStatuses[_cols, _rows];
+
+            foreach (var frog in frogs)
+            {
+                if (frog.IsAlive == false)
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    continue;
+                }
+                Debug.WriteLine($"HP:{frog.HelfPoint} P:{frog._genePointer}");
+                Frog.TakeAction(ref _field, frog);                
+            }
+
+            Debug.WriteLine("Все жабы");
+            //_field = newField;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
