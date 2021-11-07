@@ -31,9 +31,15 @@ namespace GeneticSphere
 
         private List<Frog> frogs = new List<Frog>();
 
+        private int maxFood = 640;
+        private int currenFood;
+        private int maxPoison = 160;
+        private int currenPoison;
+
         public Form1()
         {
             InitializeComponent();
+            // TODO: переделать START GAME
         }
 
         private void StartGame()
@@ -63,14 +69,14 @@ namespace GeneticSphere
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(pictureBox1.Image);
 
-            SetFieldBoundaries();// установка границы вокруг поля
+            AddAroundWalls();// установка границы вокруг поля
             // создаю жаб
             while (frogs.Count < 64)
             {
                 // сгенерить позицию
                 Random rand = new Random();
-                int posX = rand.Next(50, 257);
-                int posY = rand.Next(50, 257);
+                int posX = rand.Next(0, 257);
+                int posY = rand.Next(0, 257);
 
                 if (_field[posX, posY] == FieldCellStatuses.Empty)
                 {
@@ -80,10 +86,49 @@ namespace GeneticSphere
                 }
             }
 
+            AddFood();
+            AddPoison();
+
             timer1.Start();
         }
 
-        private void SetFieldBoundaries()
+        private void AddFood()
+        {
+            currenFood = 0;
+            while (currenFood < maxFood)
+            {
+                // сгенерить позицию
+                Random rand = new Random();
+                int x = rand.Next(0, 257);
+                int y = rand.Next(0, 257);
+
+                if (_field[x, y] == FieldCellStatuses.Empty)
+                {
+                    _field[x, y] = FieldCellStatuses.Food;
+                    currenFood++;
+                }
+            }
+        }
+
+        private void AddPoison()
+        {
+            currenPoison = 0;
+            while (currenPoison < maxPoison)
+            {
+                // сгенерить позицию
+                Random rand = new Random();
+                int x = rand.Next(0, 257);
+                int y = rand.Next(0, 257);
+
+                if (_field[x, y] == FieldCellStatuses.Empty)
+                {
+                    _field[x, y] = FieldCellStatuses.Poison;
+                    currenPoison++;
+                }
+            }
+        }
+
+        private void AddAroundWalls()
         {
             for (int x = 0; x < _cols; x++)
             {
@@ -111,11 +156,11 @@ namespace GeneticSphere
             }
             if (cellStatus == FieldCellStatuses.Poison)
             {
-                brush = Brushes.Red;
+                brush = Brushes.Magenta;
             }
             if (cellStatus == FieldCellStatuses.Food)
             {
-                brush = Brushes.Black;
+                brush = Brushes.Yellow;
             }
             if (cellStatus == FieldCellStatuses.Frog)
             {
@@ -133,7 +178,7 @@ namespace GeneticSphere
         {
             // отрисовка старого кадра
             _graphics.Clear(Color.Black);
-            SetFieldBoundaries();// установка границы вокруг поля            
+            AddAroundWalls();// установка границы вокруг поля
 
             int offsetX = (pictureBox1.Width - _cols * _resolution) / 2 - 1;
             int offsetY = (pictureBox1.Height - _rows * _resolution) / 2 - 1;

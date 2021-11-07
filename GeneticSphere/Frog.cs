@@ -614,7 +614,7 @@ namespace GeneticSphere
 
         private static void TakeUnconditionalJump(int action, Frog frog)
         {
-            if (frog._genePointer + ((int)action) > frog._genome.Length)
+            if (frog._genePointer + ((int)action) > frog._genome.Length - 1)
             {
                 frog._genePointer = frog._genePointer + ((int)action) - frog._genome.Length;
             }
