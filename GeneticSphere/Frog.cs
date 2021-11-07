@@ -367,6 +367,8 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX - 1, frog.PosY + 1] = frog.FrogType;
+                frog.PosX -= 1;
+                frog.PosY += 1;
             }
             else if (action == FrogActions.MoveOn0 && frog._whereIsLooking == FrogActions.TurnOn0)
             {
@@ -380,6 +382,8 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX, frog.PosY + 1] = frog.FrogType;
+
+                frog.PosY += 1;
             }
             else if (action == FrogActions.MoveOn45 && frog._whereIsLooking == FrogActions.TurnOn45)
             {
@@ -393,6 +397,9 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX + 1, frog.PosY + 1] = frog.FrogType;
+
+                frog.PosX += 1;
+                frog.PosY += 1;
             }
             else if(action == FrogActions.MoveOn90 && frog._whereIsLooking == FrogActions.TurnOn90)
             {
@@ -406,6 +413,8 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX + 1, frog.PosY] = frog.FrogType;
+
+                frog.PosX += 1;
             }
             else if(action == FrogActions.MoveOn135 && frog._whereIsLooking == FrogActions.TurnOn135)
             {
@@ -419,6 +428,9 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX + 1, frog.PosY - 1] = frog.FrogType;
+
+                frog.PosX += 1;
+                frog.PosY -= 1;
             }
             else if(action == FrogActions.MoveOn180 && frog._whereIsLooking == FrogActions.TurnOn180)
             {
@@ -432,6 +444,8 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX, frog.PosY - 1] = frog.FrogType;
+
+                frog.PosY -= 1;
             }
             else if(action == FrogActions.MoveOn225 && frog._whereIsLooking == FrogActions.TurnOn225)
             {
@@ -445,6 +459,9 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX - 1, frog.PosY - 1] = frog.FrogType;
+
+                frog.PosX -= 1;
+                frog.PosY -= 1;
             }
             else if(action == FrogActions.MoveOn270 && frog._whereIsLooking == FrogActions.TurnOn270)
             {
@@ -458,6 +475,8 @@ namespace GeneticSphere
 
                 field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 field[frog.PosX - 1, frog.PosY] = frog.FrogType;
+
+                frog.PosX -= 1;
             }
             else
             {

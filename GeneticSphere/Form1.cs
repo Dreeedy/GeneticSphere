@@ -150,8 +150,6 @@ namespace GeneticSphere
             pictureBox1.Refresh();
 
             // логика нового кадра
-            var newField = new FieldCellStatuses[_cols, _rows];
-
             foreach (var frog in frogs)
             {
                 if (frog.IsAlive == false)
@@ -164,7 +162,6 @@ namespace GeneticSphere
             }
 
             Debug.WriteLine("Все жабы");
-            //_field = newField;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
