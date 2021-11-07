@@ -35,6 +35,8 @@ namespace GeneticSphere
         private int currenFood;
         private int maxPoison = 160;
         private int currenPoison;
+        private int maxWalls = 90;
+        private int currentWalls;
 
         public Form1()
         {
@@ -70,6 +72,8 @@ namespace GeneticSphere
             _graphics = Graphics.FromImage(pictureBox1.Image);
 
             AddAroundWalls();// установка границы вокруг поля
+            AddWalls();
+
             // создаю жаб
             while (frogs.Count < 64)
             {
@@ -86,6 +90,7 @@ namespace GeneticSphere
                 }
             }
 
+            
             AddFood();
             AddPoison();
 
@@ -124,6 +129,42 @@ namespace GeneticSphere
                 {
                     _field[x, y] = FieldCellStatuses.Poison;
                     currenPoison++;
+                }
+            }
+        }
+
+        private void AddWalls()
+        {
+            currentWalls = 0;
+
+            while (currentWalls < maxWalls)
+            {
+                Random rand = new Random();
+
+                int xCenter = rand.Next(0, 257);
+                int yCenter = rand.Next(0, 257);
+
+                for (int x = xCenter - 1; x < xCenter + 1; x++)
+                {
+                    for (int y = yCenter - 1; y < yCenter + 1; y++)
+                    {
+                        if (x != xCenter && y != yCenter && x < 257 && y < 257)
+                        {
+                            if (_field[x,y] == FieldCellStatuses.Wall)
+                            {
+                                _field[xCenter, yCenter] = FieldCellStatuses.Wall;
+                                _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
+                                currentWalls += 2;
+                            }
+                            else
+                            { 
+                                _field[xCenter, yCenter + 1] = FieldCellStatuses.Wall;
+                                _field[xCenter, yCenter] = FieldCellStatuses.Wall;
+                                _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
+                                currentWalls += 3;
+                            }
+                        }
+                    }
                 }
             }
         }
