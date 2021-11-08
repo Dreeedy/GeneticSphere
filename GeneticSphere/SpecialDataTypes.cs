@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeneticSphere
 {
-    enum FieldCellStatuses : byte
+    public enum FieldCellStatuses : byte
     {
         Empty = 0,// в ячейке ничего нет
         Wall = 1,// в ячейке есть стена
@@ -16,7 +16,7 @@ namespace GeneticSphere
         FrogMutant = 5// в ячейке есть лягушка мутант
     }
 
-    enum FrogActions : int
+    public enum FrogActions : int
     {
         LookAt315 = 0,
         LookAt0 = 1,
