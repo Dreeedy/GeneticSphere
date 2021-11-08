@@ -52,7 +52,7 @@ namespace GeneticSphere
             }
 
             numResolution.Enabled = false;
-            numDensity.Enabled = false;
+
 
             _resolution = (int)numResolution.Value;
 
@@ -269,7 +269,6 @@ namespace GeneticSphere
             timer1.Stop();
 
             numResolution.Enabled = true;
-            numDensity.Enabled = true;
         }
 
         private void stopBut_Click(object sender, EventArgs e)

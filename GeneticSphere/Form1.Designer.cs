@@ -35,15 +35,12 @@ namespace GeneticSphere
             this.stopBut = new System.Windows.Forms.Button();
             this.startBut = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.numDensity = new System.Windows.Forms.NumericUpDown();
             this.numResolution = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDensity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numResolution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -67,9 +64,7 @@ namespace GeneticSphere
             this.splitContainer1.Panel1.Controls.Add(this.stopBut);
             this.splitContainer1.Panel1.Controls.Add(this.startBut);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.numDensity);
             this.splitContainer1.Panel1.Controls.Add(this.numResolution);
-            this.splitContainer1.Panel1.Controls.Add(this.label2);
             // 
             // splitContainer1.Panel2
             // 
@@ -107,24 +102,6 @@ namespace GeneticSphere
             this.label1.TabIndex = 13;
             this.label1.Text = "Resolution";
             // 
-            // numDensity
-            // 
-            this.numDensity.Location = new System.Drawing.Point(12, 71);
-            this.numDensity.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numDensity.Name = "numDensity";
-            this.numDensity.Size = new System.Drawing.Size(120, 23);
-            this.numDensity.TabIndex = 17;
-            this.numDensity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numDensity.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
             // numResolution
             // 
             this.numResolution.Location = new System.Drawing.Point(12, 27);
@@ -147,15 +124,6 @@ namespace GeneticSphere
             0,
             0,
             0});
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 15);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Density";
             // 
             // pictureBox1
             // 
@@ -181,7 +149,6 @@ namespace GeneticSphere
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numDensity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numResolution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -194,9 +161,7 @@ namespace GeneticSphere
         private System.Windows.Forms.Button stopBut;
         private System.Windows.Forms.Button startBut;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numDensity;
         private System.Windows.Forms.NumericUpDown numResolution;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
