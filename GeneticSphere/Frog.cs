@@ -41,7 +41,19 @@ namespace GeneticSphere
             PosX = posX;
             PosY = posY;
             // установить posX posY
-        }    
+        }
+        public Frog(int posX, int posY, FrogActions[] genome, FieldCellStatuses frogType = FieldCellStatuses.Frog)
+        {
+            IsAlive = true;
+            GenePointer = 0;
+            WhereIsLooking = FrogActions.LookAt0;// возможно устанавливать случайно
+            FrogType = frogType;
+            HelfPoint = 99;
+            PosX = posX;
+            PosY = posY;
+            this.Genome = genome;
+            // установить posX posY
+        }
         public FrogActions GetNextAction()
         {
             return this.Genome[this.GenePointer];

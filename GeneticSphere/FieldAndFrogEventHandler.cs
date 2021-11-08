@@ -23,6 +23,8 @@ namespace GeneticSphere
         }
         public void NextGeneration()
         {
+            int countIsAliveFrogs = 0;
+
             foreach (var frog in _frogsList)
             {
                 if (frog.IsAlive == false)
@@ -30,10 +32,24 @@ namespace GeneticSphere
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                     continue;
                 }
-                Debug.WriteLine($"HP:{frog.HelfPoint} P:{frog.GenePointer}");
+                else
+                {
+                    countIsAliveFrogs = _frogsList.Where(f => f.IsAlive).Count();
+                    if (countIsAliveFrogs == 8)
+                    {
+                        List<Frog> mutantFrogs = new List<Frog>();
+                        for (int i = 0; i < 8; i++)
+                        {
+                            mutantFrogs.AddRange(_frogsList.Where(f => f.IsAlive == true));
+                        }
+                        _frogsList = mutantFrogs;// сформировал новое поколение
+                        GameEngine.Generation++;
+                        GameEngine.NewGenerationIsReady = true;
+                        break;
+                    }
+                }
                 TakeAction(frog);
             }
-            Debug.WriteLine("Все жабы");
         }        
         private void TakeAction(Frog frog)
         {
@@ -77,6 +93,15 @@ namespace GeneticSphere
 
                 frog.ReduceHelfPoints(GameEngine.EveryTurnDamage);
             }
+        }
+        public List<Frog> GetFrogs()
+        {
+            List<Frog> mutanFrogs = new List<Frog>();
+            foreach (var frog in _frogsList)
+            {
+                mutanFrogs.Add(frog);
+            }
+            return mutanFrogs;
         }
         public FieldCellStatuses[,] GetField()
         {

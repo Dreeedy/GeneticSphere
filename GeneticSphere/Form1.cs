@@ -54,6 +54,9 @@ namespace GeneticSphere
             }
             pictureBox1.Refresh();
 
+            DrawFrogsHelfPoints();
+            lab_GenerationNumber.Text = GameEngine.Generation.ToString();
+
             _gameEngine.NextGeneration();
         }
         private Brush ChooseColoredBrush(FieldCellStatuses cellStatus)
@@ -86,6 +89,23 @@ namespace GeneticSphere
             }
 
             return brush;
+        }
+        private void DrawFrogsHelfPoints()
+        {
+            string str = "";
+            int index = 0;
+            int sep = 8;
+            foreach (var item in _gameEngine.GetFrogsHelfPoints())
+            {
+                if (index == sep)
+                {
+                    str += "\r\n";
+                    index = 0;
+                }
+                str += item + " | ";
+                index++;
+            }
+            lab_FrogsHelfPoints.Text = str;
         }
         private void StopGame()
         {

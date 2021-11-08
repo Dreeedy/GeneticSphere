@@ -16,6 +16,9 @@ namespace GeneticSphere
         public static int FoodPoints { get; } = 10;
         public static int PoisonPoints { get; } = 30;
 
+        public static int Generation { get; set; } = 0;
+        public static bool NewGenerationIsReady { get; set; } = false;
+
         private const int MAXCOUNTFOOD = 1000;
         private const int MAXCOUNTPOISON = 160;
         private const int MAXCOUNTWALLS = 90;       
@@ -52,7 +55,15 @@ namespace GeneticSphere
             // добавление яда
             AddPoison();
             // добавление жаб
-            AddFrogs();
+            if (GameEngine.NewGenerationIsReady == true)
+            {
+                AddMutantFrogs();
+                GameEngine.NewGenerationIsReady = false;
+            }
+            else
+            {
+                AddFrogs();
+            }            
         }
         public void StopGame()
         {
@@ -68,9 +79,16 @@ namespace GeneticSphere
         }
         public void NextGeneration()
         {
+            if (GameEngine.NewGenerationIsReady == true)
+            {
+                StartGame();
+                return;
+            }
+
             FieldAndFrogEventHandler handler = new FieldAndFrogEventHandler(GetField(), Cols, Rows, _frogsList);
             handler.NextGeneration();
             _field = handler.GetField();
+            _frogsList = handler.GetFrogs();
         }
         public FieldCellStatuses[,] GetField()
         {
@@ -83,6 +101,15 @@ namespace GeneticSphere
                 }
             }
             return newField;
+        }
+        public List<int> GetFrogsHelfPoints()
+        {
+            List<int> frogsHelfPoints = new List<int>();
+            foreach (var frog in _frogsList)
+            {
+                frogsHelfPoints.Add(frog.HelfPoint);
+            }
+            return frogsHelfPoints;
         }
 
 
@@ -180,6 +207,34 @@ namespace GeneticSphere
                     _frogsList.Add(frog);
                 }
             }
-        }        
+        }
+        private void AddMutantFrogs()
+        {
+            List<Frog> mutantFrogsList = new List<Frog>();
+            foreach (var frog in _frogsList)
+            {
+                Random rand;
+                bool frogPlaced = false;
+                while (frogPlaced != true)
+                {
+                    rand = new Random();
+                    int posX = rand.Next(0, 257);
+                    int posY = rand.Next(0, 257);
+                    if (_field[posX, posY] == FieldCellStatuses.Empty)
+                    {
+                        mutantFrogsList.Add(new Frog(posX, posY, frog.Genome));
+
+                        _field[posX, posY] = frog.FrogType;
+
+                        frogPlaced = true;
+                    }
+                }
+            }
+            _frogsList.Clear();
+            foreach (var mutantFrog in mutantFrogsList)
+            {
+                _frogsList.Add(mutantFrog);
+            }
+        }
     }
 }
