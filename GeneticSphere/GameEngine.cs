@@ -7,12 +7,16 @@ using System.Threading.Tasks;
 
 namespace GeneticSphere
 {
-    public class GameEngine
+    internal class GameEngine
     {
         public int Rows { get; } = 257;
         public int Cols { get; } = 257;
 
-        private const int MAXCOUNTFOOD = 640;
+        public static int EveryTurnDamage { get; } = 1;
+        public static int FoodPoints { get; } = 10;
+        public static int PoisonPoints { get; } = 30;
+
+        private const int MAXCOUNTFOOD = 1000;
         private const int MAXCOUNTPOISON = 160;
         private const int MAXCOUNTWALLS = 90;       
         
@@ -63,24 +67,14 @@ namespace GeneticSphere
 
         }
         public void NextGeneration()
-        {        
-            foreach (var frog in _frogsList)
-            {
-                if (frog.IsAlive == false)
-                {
-                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                    continue;
-                }
-                Debug.WriteLine($"HP:{frog.HelfPoint} P:{frog._genePointer}");
-                Frog.TakeAction(ref _field, frog);
-            }
-
-            Debug.WriteLine("Все жабы");
+        {
+            FieldAndFrogEventHandler handler = new FieldAndFrogEventHandler(GetField(), Cols, Rows, _frogsList);
+            handler.NextGeneration();
+            _field = handler.GetField();
         }
         public FieldCellStatuses[,] GetField()
         {
             FieldCellStatuses[,] newField = new FieldCellStatuses[Rows, Cols];
-
             for (int x = 0; x < Cols; x++)
             {
                 for (int y = 0; y < Rows; y++)
@@ -88,7 +82,6 @@ namespace GeneticSphere
                     newField[x, y] = _field[x, y];
                 }
             }
-
             return newField;
         }
 
@@ -110,7 +103,6 @@ namespace GeneticSphere
         private void AddInternalWalls()
         {
             _currentCountWalls = 0;
-
             while (_currentCountWalls < MAXCOUNTWALLS)
             {
                 Random rand = new Random();
@@ -122,7 +114,7 @@ namespace GeneticSphere
                 {
                     for (int y = yCenter - 1; y < yCenter + 1; y++)
                     {
-                        if (x != xCenter && y != yCenter && x < 257 && y < 257 && x > 0 && y > 0)
+                        if (x != xCenter && y != yCenter && x < 255 && y < 255 && x > 0 && y > 0)
                         {
                             if (_field[x, y] == FieldCellStatuses.Wall)
                             {
@@ -145,13 +137,12 @@ namespace GeneticSphere
         private void AddFood()
         {
             _currenCountFood = 0;
+            Random rand;
             while (_currenCountFood < MAXCOUNTFOOD)
             {
-                // сгенерить позицию
-                Random rand = new Random();
+                rand = new Random();
                 int x = rand.Next(0, 257);
                 int y = rand.Next(0, 257);
-
                 if (_field[x, y] == FieldCellStatuses.Empty)
                 {
                     _field[x, y] = FieldCellStatuses.Food;
@@ -164,11 +155,9 @@ namespace GeneticSphere
             _currenCountPoison = 0;
             while (_currenCountPoison < MAXCOUNTPOISON)
             {
-                // сгенерить позицию
                 Random rand = new Random();
                 int x = rand.Next(0, 257);
                 int y = rand.Next(0, 257);
-
                 if (_field[x, y] == FieldCellStatuses.Empty)
                 {
                     _field[x, y] = FieldCellStatuses.Poison;
@@ -178,14 +167,12 @@ namespace GeneticSphere
         }
         private void AddFrogs()
         {
-            // создаю жаб
+            Random rand;
             while (_frogsList.Count < 64)
             {
-                // сгенерить позицию
-                Random rand = new Random();
+                rand = new Random();
                 int posX = rand.Next(0, 257);
                 int posY = rand.Next(0, 257);
-
                 if (_field[posX, posY] == FieldCellStatuses.Empty)
                 {
                     var frog = new Frog(posX, posY);
@@ -193,6 +180,6 @@ namespace GeneticSphere
                     _frogsList.Add(frog);
                 }
             }
-        }     
+        }        
     }
 }
