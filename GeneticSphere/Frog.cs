@@ -40,7 +40,6 @@ namespace GeneticSphere
             HelfPoint = 99;
             PosX = posX;
             PosY = posY;
-            // установить posX posY
         }
         public Frog(int posX, int posY, FrogActions[] genome, FieldCellStatuses frogType = FieldCellStatuses.Frog)
         {
@@ -52,7 +51,17 @@ namespace GeneticSphere
             PosX = posX;
             PosY = posY;
             this.Genome = genome;
-            // установить posX posY
+        }
+        public Frog(Frog frog)
+        {
+            IsAlive = frog.IsAlive;
+            GenePointer = frog.GenePointer;
+            WhereIsLooking = frog.WhereIsLooking;// возможно устанавливать случайно
+            FrogType = frog.FrogType;
+            HelfPoint = frog.HelfPoint;
+            PosX = frog.PosX;
+            PosY = frog.PosY;
+            this.Genome = frog.Genome;
         }
         public FrogActions GetNextAction()
         {
@@ -64,6 +73,7 @@ namespace GeneticSphere
             {
                 this.HelfPoint = 0;
                 this.IsAlive = false;
+                return;
             }
             this.HelfPoint -= value;
         }        
@@ -72,6 +82,7 @@ namespace GeneticSphere
             if (this.HelfPoint + value > maxHelfPoints)
             {
                 this.HelfPoint = maxHelfPoints;
+                return;
             }
             this.HelfPoint += value;
         }        
