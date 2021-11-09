@@ -92,8 +92,6 @@ namespace GeneticSphere
             handler.NextGeneration();
             _field = handler.GetField();
             _frogsList = handler.GetFrogs();
-            GameEngine.CountFrogs = _frogsList.Where(f => f.FrogType == FieldCellStatuses.Frog).Count();
-            GameEngine.CoutnMutants = _frogsList.Where(f => f.FrogType == FieldCellStatuses.FrogMutant).Count();
         }
         public FieldCellStatuses[,] GetField()
         {
