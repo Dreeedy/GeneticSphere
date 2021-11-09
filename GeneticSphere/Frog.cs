@@ -23,14 +23,11 @@ namespace GeneticSphere
 
         public FieldCellStatuses FrogType { get; set; }
 
-        public int HelfPoint { get; private set; }
-        private static int maxHelfPoints = 99;
-        private static int minHelfPoints = 1;        
+        public int HelfPoint { get; private set; }               
         public bool IsAlive { get; private set; }
 
         public Frog(int posX, int posY, FieldCellStatuses frogType = FieldCellStatuses.Frog)
         {
-            //CreateGenome();
             GenerateGenome();
 
             IsAlive = true;
@@ -69,7 +66,7 @@ namespace GeneticSphere
         }
         public void ReduceHelfPoints(int value)
         {
-            if (this.HelfPoint - value < minHelfPoints)
+            if (this.HelfPoint - value < GameRules.MinHelfPoints)
             {
                 this.HelfPoint = 0;
                 this.IsAlive = false;
@@ -79,9 +76,9 @@ namespace GeneticSphere
         }        
         public void AddHelfPoints(int value)
         {
-            if (this.HelfPoint + value > maxHelfPoints)
+            if (this.HelfPoint + value > GameRules.MaxHelfPoints)
             {
-                this.HelfPoint = maxHelfPoints;
+                this.HelfPoint = GameRules.MaxHelfPoints;
                 return;
             }
             this.HelfPoint += value;
