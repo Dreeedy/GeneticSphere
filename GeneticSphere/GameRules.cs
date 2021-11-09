@@ -12,6 +12,11 @@ namespace GeneticSphere
         public static int Rows { get; } = 257;
         public static int Cols { get; } = 257;
 
+        // Количество жаб (ботов)
+
+        // Размер генома 
+        public static int GenomeSize { get; } = 128;
+
         // Урон за каждый ход
         public static int EveryTurnDamage { get; } = 1;
 
@@ -25,5 +30,12 @@ namespace GeneticSphere
         public static int MaxCountFood { get; } = 20000;
         public static int MaxCountPoison { get; } = 960;
         public static int MaxCounWalls { get; } = 90;
+
+
+
+        public static int GetCountFieldCells()
+        {
+            return Rows * Cols;
+        }
     }
 }

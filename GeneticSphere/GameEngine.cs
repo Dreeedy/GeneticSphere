@@ -240,7 +240,7 @@ namespace GeneticSphere
         private FrogActions[] PerformMutation(FrogActions[] genome)
         {
             Random rand = new Random();
-            int mutantGenIndex = rand.Next(0, 64);
+            int mutantGenIndex = rand.Next(0, GameRules.GenomeSize);
 
             Random rand2 = new Random();
             int mutantGenId = rand2.Next(0, 64);
@@ -254,7 +254,7 @@ namespace GeneticSphere
                     while (newGenome[i] == newAction)
                     {
                         rand = new Random();
-                        mutantGenId = rand2.Next(0, 64);
+                        mutantGenId = rand.Next(0, 64);
                         newAction = (FrogActions)mutantGenId;                        
                     }
                     newGenome[i] = newAction;
