@@ -187,11 +187,11 @@ namespace GeneticSphere
         private void AddFrogs()
         {
             Random rand;
-            while (_frogsList.Count < 64)
+            while (_frogsList.Count < GameRules.MaxCoutnFrogs)
             {
                 rand = new Random();
-                int posX = rand.Next(0, 257);
-                int posY = rand.Next(0, 257);
+                int posX = rand.Next(0, GameRules.Cols);
+                int posY = rand.Next(0, GameRules.Rows);
                 if (_field[posX, posY] == FieldCellStatuses.Empty)
                 {
                     var frog = new Frog(posX, posY);
@@ -211,8 +211,8 @@ namespace GeneticSphere
                 while (frogPlaced != true)
                 {
                     rand = new Random();
-                    int posX = rand.Next(0, 257);
-                    int posY = rand.Next(0, 257);
+                    int posX = rand.Next(0, GameRules.Cols);
+                    int posY = rand.Next(0, GameRules.Rows);
                     if (_field[posX, posY] == FieldCellStatuses.Empty)
                     {
                         if (index % 8 == 0)
