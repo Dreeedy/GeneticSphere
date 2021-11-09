@@ -41,13 +41,13 @@ namespace GeneticSphere
 
             if (GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0)
             {
-                int offsetX = (pictureBox1.Width - _gameEngine.Cols * _resolution) / 2 - 1;
-                int offsetY = (pictureBox1.Height - _gameEngine.Rows * _resolution) / 2 - 1;
+                int offsetX = (pictureBox1.Width - GameRules.Cols * _resolution) / 2 - 1;
+                int offsetY = (pictureBox1.Height - GameRules.Rows * _resolution) / 2 - 1;
 
                 _graphics.Clear(Color.Black);
-                for (int x = 0; x < _gameEngine.Cols; x++)
+                for (int x = 0; x < GameRules.Cols; x++)
                 {
-                    for (int y = 0; y < _gameEngine.Rows; y++)
+                    for (int y = 0; y < GameRules.Rows; y++)
                     {
                         Brush brush = ChooseColoredBrush(field[x, y]);
                         _graphics.FillRectangle(brush, x * _resolution + offsetX, y * _resolution + offsetY, _resolution - 1, _resolution - 1);

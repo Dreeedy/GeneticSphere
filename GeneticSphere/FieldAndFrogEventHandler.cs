@@ -91,7 +91,7 @@ namespace GeneticSphere
                     frog.TakeUnconditionalJump(((int)action));
                 }
 
-                frog.ReduceHelfPoints(GameEngine.EveryTurnDamage);
+                frog.ReduceHelfPoints(GameRules.EveryTurnDamage);
             }
         }
         public List<Frog> GetFrogs()
@@ -132,12 +132,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX - 1, frog.PosY + 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX - 1, frog.PosY + 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
             if (action == FrogActions.Eat0)
@@ -153,12 +153,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX, frog.PosY + 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX, frog.PosY + 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
             if (action == FrogActions.Eat45)
@@ -174,12 +174,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX + 1, frog.PosY + 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX + 1, frog.PosY + 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
             if (action == FrogActions.Eat90)
@@ -195,12 +195,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX + 1, frog.PosY] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX + 1, frog.PosY] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
             if (action == FrogActions.Eat135)
@@ -216,12 +216,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX + 1, frog.PosY - 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX + 1, frog.PosY - 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
             if (action == FrogActions.Eat180)
@@ -237,12 +237,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX, frog.PosY - 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX, frog.PosY - 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
             if (action == FrogActions.Eat225)
@@ -258,12 +258,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX - 1, frog.PosY - 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX - 1, frog.PosY - 1] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
             if (action == FrogActions.Eat270)
@@ -279,12 +279,12 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX - 1, frog.PosY] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.FoodPoints);
+                    frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX - 1, frog.PosY] = FieldCellStatuses.Empty;
-                    frog.AddHelfPoints(GameEngine.PoisonPoints);
+                    frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
         }

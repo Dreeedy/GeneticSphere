@@ -8,20 +8,9 @@ using System.Threading.Tasks;
 namespace GeneticSphere
 {
     internal class GameEngine
-    {
-        public int Rows { get; } = 257;
-        public int Cols { get; } = 257;
-
-        public static int EveryTurnDamage { get; } = 1;
-        public static int FoodPoints { get; } = 59;
-        public static int PoisonPoints { get; } = 99;
-
+    {     
         public static int Generation { get; set; } = 0;
-        public static bool NewGenerationIsReady { get; set; } = false;
-
-        private const int MAXCOUNTFOOD = 20000;
-        private const int MAXCOUNTPOISON = 960;
-        private const int MAXCOUNTWALLS = 90;       
+        public static bool NewGenerationIsReady { get; set; } = false;        
         
         private int _currenCountFood = 0;        
         private int _currenCountPoison = 0;        
@@ -40,11 +29,11 @@ namespace GeneticSphere
         public void StartGame()
         {
             // создание игрового поля
-            _field = new FieldCellStatuses[Cols, Rows];
+            _field = new FieldCellStatuses[GameRules.Cols, GameRules.Rows];
             // заполнения поля пустыми ячейками
-            for (int x = 1; x < Cols - 1; x++)
+            for (int x = 1; x < GameRules.Cols - 1; x++)
             {
-                for (int y = 1; y < Rows - 1; y++)
+                for (int y = 1; y < GameRules.Rows - 1; y++)
                 {
                     _field[x, y] = FieldCellStatuses.Empty;
                 }
@@ -88,17 +77,17 @@ namespace GeneticSphere
                 return;
             }
 
-            FieldAndFrogEventHandler handler = new FieldAndFrogEventHandler(GetField(), Cols, Rows, _frogsList);
+            FieldAndFrogEventHandler handler = new FieldAndFrogEventHandler(GetField(), GameRules.Cols, GameRules.Rows, _frogsList);
             handler.NextGeneration();
             _field = handler.GetField();
             _frogsList = handler.GetFrogs();
         }
         public FieldCellStatuses[,] GetField()
         {
-            FieldCellStatuses[,] newField = new FieldCellStatuses[Rows, Cols];
-            for (int x = 0; x < Cols; x++)
+            FieldCellStatuses[,] newField = new FieldCellStatuses[GameRules.Rows, GameRules.Cols];
+            for (int x = 0; x < GameRules.Cols; x++)
             {
-                for (int y = 0; y < Rows; y++)
+                for (int y = 0; y < GameRules.Rows; y++)
                 {
                     newField[x, y] = _field[x, y];
                 }
@@ -119,9 +108,9 @@ namespace GeneticSphere
 
         private void AddExternalWalls()
         {
-            for (int x = 0; x < Cols; x++)
+            for (int x = 0; x < GameRules.Cols; x++)
             {
-                for (int y = 0; y < Rows; y++)
+                for (int y = 0; y < GameRules.Rows; y++)
                 {
                     if ((x == 0 || x == 256 && y >= 0) || (y == 0 || y == 256 && x >= 0))
                     {
@@ -133,7 +122,7 @@ namespace GeneticSphere
         private void AddInternalWalls()
         {
             _currentCountWalls = 0;
-            while (_currentCountWalls < MAXCOUNTWALLS)
+            while (_currentCountWalls < GameRules.MaxCounWalls)
             {
                 Random rand = new Random();
 
@@ -168,7 +157,7 @@ namespace GeneticSphere
         {
             _currenCountFood = 0;
             Random rand;
-            while (_currenCountFood < MAXCOUNTFOOD)
+            while (_currenCountFood < GameRules.MaxCountFood)
             {
                 rand = new Random();
                 int x = rand.Next(0, 257);
@@ -183,7 +172,7 @@ namespace GeneticSphere
         private void AddPoison()
         {
             _currenCountPoison = 0;
-            while (_currenCountPoison < MAXCOUNTPOISON)
+            while (_currenCountPoison < GameRules.MaxCountPoison)
             {
                 Random rand = new Random();
                 int x = rand.Next(0, 257);
