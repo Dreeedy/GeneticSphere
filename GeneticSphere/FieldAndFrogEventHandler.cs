@@ -29,7 +29,7 @@ namespace GeneticSphere
             {
                 if (frog.IsAlive == false)
                 {
-                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;                   
                     continue;
                 }
                 else

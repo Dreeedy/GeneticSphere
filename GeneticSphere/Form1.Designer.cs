@@ -32,14 +32,15 @@ namespace GeneticSphere
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lab_Frogs = new System.Windows.Forms.Label();
+            this.lab_LifeDuration = new System.Windows.Forms.Label();
+            this.lab_GenerationNumber = new System.Windows.Forms.Label();
             this.lab_FrogsHelfPoints = new System.Windows.Forms.Label();
             this.stopBut = new System.Windows.Forms.Button();
             this.startBut = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.numResolution = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lab_GenerationNumber = new System.Windows.Forms.Label();
-            this.lab_LifeDuration = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,6 +65,7 @@ namespace GeneticSphere
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.lab_Frogs);
             this.splitContainer1.Panel1.Controls.Add(this.lab_LifeDuration);
             this.splitContainer1.Panel1.Controls.Add(this.lab_GenerationNumber);
             this.splitContainer1.Panel1.Controls.Add(this.lab_FrogsHelfPoints);
@@ -78,6 +80,33 @@ namespace GeneticSphere
             this.splitContainer1.Size = new System.Drawing.Size(1336, 507);
             this.splitContainer1.SplitterDistance = 412;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // lab_Frogs
+            // 
+            this.lab_Frogs.AutoSize = true;
+            this.lab_Frogs.Location = new System.Drawing.Point(206, 27);
+            this.lab_Frogs.Name = "lab_Frogs";
+            this.lab_Frogs.Size = new System.Drawing.Size(38, 15);
+            this.lab_Frogs.TabIndex = 22;
+            this.lab_Frogs.Text = "label2";
+            // 
+            // lab_LifeDuration
+            // 
+            this.lab_LifeDuration.AutoSize = true;
+            this.lab_LifeDuration.Location = new System.Drawing.Point(138, 42);
+            this.lab_LifeDuration.Name = "lab_LifeDuration";
+            this.lab_LifeDuration.Size = new System.Drawing.Size(38, 15);
+            this.lab_LifeDuration.TabIndex = 21;
+            this.lab_LifeDuration.Text = "label2";
+            // 
+            // lab_GenerationNumber
+            // 
+            this.lab_GenerationNumber.AutoSize = true;
+            this.lab_GenerationNumber.Location = new System.Drawing.Point(138, 27);
+            this.lab_GenerationNumber.Name = "lab_GenerationNumber";
+            this.lab_GenerationNumber.Size = new System.Drawing.Size(38, 15);
+            this.lab_GenerationNumber.TabIndex = 20;
+            this.lab_GenerationNumber.Text = "label2";
             // 
             // lab_FrogsHelfPoints
             // 
@@ -150,24 +179,6 @@ namespace GeneticSphere
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-            // lab_GenerationNumber
-            // 
-            this.lab_GenerationNumber.AutoSize = true;
-            this.lab_GenerationNumber.Location = new System.Drawing.Point(138, 27);
-            this.lab_GenerationNumber.Name = "lab_GenerationNumber";
-            this.lab_GenerationNumber.Size = new System.Drawing.Size(38, 15);
-            this.lab_GenerationNumber.TabIndex = 20;
-            this.lab_GenerationNumber.Text = "label2";
-            // 
-            // lab_LifeDuration
-            // 
-            this.lab_LifeDuration.AutoSize = true;
-            this.lab_LifeDuration.Location = new System.Drawing.Point(138, 42);
-            this.lab_LifeDuration.Name = "lab_LifeDuration";
-            this.lab_LifeDuration.Size = new System.Drawing.Size(38, 15);
-            this.lab_LifeDuration.TabIndex = 21;
-            this.lab_LifeDuration.Text = "label2";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -199,6 +210,7 @@ namespace GeneticSphere
         private System.Windows.Forms.Label lab_FrogsHelfPoints;
         private System.Windows.Forms.Label lab_LifeDuration;
         private System.Windows.Forms.Label lab_GenerationNumber;
+        private System.Windows.Forms.Label lab_Frogs;
     }
 }
 
