@@ -13,14 +13,14 @@ namespace GeneticSphere
         public int Cols { get; } = 257;
 
         public static int EveryTurnDamage { get; } = 1;
-        public static int FoodPoints { get; } = 10;
-        public static int PoisonPoints { get; } = 30;
+        public static int FoodPoints { get; } = 59;
+        public static int PoisonPoints { get; } = 99;
 
         public static int Generation { get; set; } = 0;
         public static bool NewGenerationIsReady { get; set; } = false;
 
-        private const int MAXCOUNTFOOD = 1000;
-        private const int MAXCOUNTPOISON = 160;
+        private const int MAXCOUNTFOOD = 20000;
+        private const int MAXCOUNTPOISON = 960;
         private const int MAXCOUNTWALLS = 90;       
         
         private int _currenCountFood = 0;        
@@ -29,6 +29,9 @@ namespace GeneticSphere
 
         private FieldCellStatuses[,] _field;
         private List<Frog> _frogsList;
+
+        public static int CountFrogs { get; set; } = 0;
+        public static int CoutnMutants { get; set; } = 0;
 
         public GameEngine()
         {
@@ -89,6 +92,8 @@ namespace GeneticSphere
             handler.NextGeneration();
             _field = handler.GetField();
             _frogsList = handler.GetFrogs();
+            GameEngine.CountFrogs = _frogsList.Where(f => f.FrogType == FieldCellStatuses.Frog).Count();
+            GameEngine.CoutnMutants = _frogsList.Where(f => f.FrogType == FieldCellStatuses.FrogMutant).Count();
         }
         public FieldCellStatuses[,] GetField()
         {
@@ -211,6 +216,7 @@ namespace GeneticSphere
         private void AddMutantFrogs()
         {
             List<Frog> mutantFrogsList = new List<Frog>();
+            int index = 0;
             foreach (var frog in _frogsList)
             {
                 Random rand;
@@ -222,19 +228,57 @@ namespace GeneticSphere
                     int posY = rand.Next(0, 257);
                     if (_field[posX, posY] == FieldCellStatuses.Empty)
                     {
-                        mutantFrogsList.Add(new Frog(posX, posY, frog.Genome));
+                        if (index % 8 == 0)
+                        {
+                            mutantFrogsList.Add( new Frog( posX, posY, PerformMutation(frog.Genome), FieldCellStatuses.FrogMutant) );
+                        }
+                        else
+                        {
+                            mutantFrogsList.Add(new Frog(posX, posY, frog.Genome));
+                        }
 
                         _field[posX, posY] = frog.FrogType;
 
                         frogPlaced = true;
                     }
                 }
+                index++;
             }
             _frogsList.Clear();
             foreach (var mutantFrog in mutantFrogsList)
             {
                 _frogsList.Add(mutantFrog);
             }
+        }
+        private FrogActions[] PerformMutation(FrogActions[] genome)
+        {
+            Random rand = new Random();
+            int mutantGenIndex = rand.Next(0, 64);
+
+            Random rand2 = new Random();
+            int mutantGenId = rand2.Next(0, 64);
+
+            FrogActions[] newGenome = new FrogActions[genome.Length];
+            for (int i = 0; i < genome.Length; i++)
+            {
+                if (mutantGenIndex == i)
+                {
+                    FrogActions newAction = (FrogActions)mutantGenId;
+                    while (newGenome[i] == newAction)
+                    {
+                        rand = new Random();
+                        mutantGenId = rand2.Next(0, 64);
+                        newAction = (FrogActions)mutantGenId;                        
+                    }
+                    newGenome[i] = newAction;
+                }
+                else
+                {
+                    newGenome[i] = genome[i];
+                }
+                
+            }          
+            return newGenome;
         }
     }
 }
