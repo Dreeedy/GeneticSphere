@@ -9,12 +9,12 @@ namespace GeneticSphere
     internal class Frog
     {
         // команды на перемещение и питание являются завершающими, ход переходит к другому боту
-        // если перейти, съеть, посмотреть в другую ячейку будет происходить смешение указателя в зависемости от обнаруженного
+        // если перейти, съеcть, посмотреть в другую ячейку будет происходить смешение указателя в зависемости от обнаруженного
         // яд 1, стена 2, бот 3, еда 4, пусто 5
         // если наступить на яд - бот умрет, если съесть яд, получить кучу еды
 
-        public FrogActions[] Genome { get; private set; } = new FrogActions[64];
-        public int GenePointer { get; set; }
+        public FrogActions[] Genome { get; } = new FrogActions[GameRules.GenomeSize];
+        public int GenePointer { get; private set; }
 
         public int PosX { get; set; }
         public int PosY { get; set; }
@@ -35,7 +35,7 @@ namespace GeneticSphere
 
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = FrogActions.LookAt0;// возможно устанавливать случайно
+            WhereIsLooking = GenerateWhereIsLooking();// возможно устанавливать случайно
             FrogType = frogType;
             HelfPoint = 99;
             PosX = posX;
@@ -45,7 +45,7 @@ namespace GeneticSphere
         {
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = FrogActions.LookAt0;// возможно устанавливать случайно
+            WhereIsLooking = GenerateWhereIsLooking();// возможно устанавливать случайно
             FrogType = frogType;
             HelfPoint = 99;
             PosX = posX;
@@ -54,11 +54,11 @@ namespace GeneticSphere
         }
         public Frog(Frog frog)
         {
-            IsAlive = frog.IsAlive;
-            GenePointer = frog.GenePointer;
-            WhereIsLooking = frog.WhereIsLooking;// возможно устанавливать случайно
+            IsAlive = true;
+            GenePointer = 0;
+            WhereIsLooking = GenerateWhereIsLooking();// возможно устанавливать случайно
             FrogType = frog.FrogType;
-            HelfPoint = frog.HelfPoint;
+            HelfPoint = 99;
             PosX = frog.PosX;
             PosY = frog.PosY;
             this.Genome = frog.Genome;
@@ -111,13 +111,13 @@ namespace GeneticSphere
         }
         public void TakeUnconditionalJump(int action)
         {
-            if (this.GenePointer + ((int)action) > this.Genome.Length - 1)
+            if (this.GenePointer + action > this.Genome.Length - 1)
             {
-                this.GenePointer = this.GenePointer + ((int)action) - this.Genome.Length;
+                this.GenePointer = this.GenePointer + action - this.Genome.Length;
             }
             else
             {
-                this.GenePointer += ((int)action);
+                this.GenePointer += action;
             }
         }
 
@@ -132,6 +132,11 @@ namespace GeneticSphere
 
                 Genome[i] = ((FrogActions)value);
             }
+        }
+        private FrogActions GenerateWhereIsLooking()
+        {
+            Random random = new Random();
+            return (FrogActions)random.Next(0, 8);
         }
         private void CreateGenome()
         {
