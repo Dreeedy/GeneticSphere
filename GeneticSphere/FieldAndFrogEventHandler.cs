@@ -299,11 +299,18 @@ namespace GeneticSphere
                 {
                     return;
                 }
-
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX - 1, frog.PosY + 1] = frog.FrogType;
-                frog.PosX -= 1;
-                frog.PosY += 1;
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX - 1, frog.PosY + 1] = frog.FrogType;
+                    frog.PosX -= 1;
+                    frog.PosY += 1;
+                }                
             }
             else if (action == FrogActions.MoveOn0 && frog.WhereIsLooking == FrogActions.TurnOn0)
             {
@@ -314,11 +321,18 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX, frog.PosY + 1] = frog.FrogType;
 
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX, frog.PosY + 1] = frog.FrogType;
-
-                frog.PosY += 1;
+                    frog.PosY += 1;
+                }                
             }
             else if (action == FrogActions.MoveOn45 && frog.WhereIsLooking == FrogActions.TurnOn45)
             {
@@ -329,12 +343,19 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX + 1, frog.PosY + 1] = frog.FrogType;
 
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX + 1, frog.PosY + 1] = frog.FrogType;
-
-                frog.PosX += 1;
-                frog.PosY += 1;
+                    frog.PosX += 1;
+                    frog.PosY += 1;
+                }                
             }
             else if (action == FrogActions.MoveOn90 && frog.WhereIsLooking == FrogActions.TurnOn90)
             {
@@ -345,11 +366,18 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX + 1, frog.PosY] = frog.FrogType;
 
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX + 1, frog.PosY] = frog.FrogType;
-
-                frog.PosX += 1;
+                    frog.PosX += 1;
+                }                
             }
             else if (action == FrogActions.MoveOn135 && frog.WhereIsLooking == FrogActions.TurnOn135)
             {
@@ -360,12 +388,19 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX + 1, frog.PosY - 1] = frog.FrogType;
 
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX + 1, frog.PosY - 1] = frog.FrogType;
-
-                frog.PosX += 1;
-                frog.PosY -= 1;
+                    frog.PosX += 1;
+                    frog.PosY -= 1;
+                }                
             }
             else if (action == FrogActions.MoveOn180 && frog.WhereIsLooking == FrogActions.TurnOn180)
             {
@@ -376,11 +411,18 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX, frog.PosY - 1] = frog.FrogType;
 
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX, frog.PosY - 1] = frog.FrogType;
-
-                frog.PosY -= 1;
+                    frog.PosY -= 1;
+                }                
             }
             else if (action == FrogActions.MoveOn225 && frog.WhereIsLooking == FrogActions.TurnOn225)
             {
@@ -391,12 +433,20 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX - 1, frog.PosY - 1] = frog.FrogType;
 
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX - 1, frog.PosY - 1] = frog.FrogType;
-
-                frog.PosX -= 1;
-                frog.PosY -= 1;
+                    frog.PosX -= 1;
+                    frog.PosY -= 1;
+                }
+                
             }
             else if (action == FrogActions.MoveOn270 && frog.WhereIsLooking == FrogActions.TurnOn270)
             {
@@ -407,11 +457,18 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Poison)
+                {
+                    frog.ReduceHelfPoints(GameRules.PoisonDamage);
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else
+                {
+                    _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                    _field[frog.PosX - 1, frog.PosY] = frog.FrogType;
 
-                _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
-                _field[frog.PosX - 1, frog.PosY] = frog.FrogType;
-
-                frog.PosX -= 1;
+                    frog.PosX -= 1;
+                }                
             }
             else
             {

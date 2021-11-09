@@ -21,6 +21,7 @@ namespace GeneticSphere
         public static int EveryTurnDamage { get; } = 1;
 
         // Урон яда
+        public static int PoisonDamage { get; } = 100;
 
         // Сколько еда и яд, дают хп
         public static int FoodPoints { get; } = 59;

@@ -39,7 +39,7 @@ namespace GeneticSphere
         {
             FieldCellStatuses[,] field = _gameEngine.GetField();
 
-            if (GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0)
+            if (true) // GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0
             {
                 int offsetX = (pictureBox1.Width - GameRules.Cols * _resolution) / 2 - 1;
                 int offsetY = (pictureBox1.Height - GameRules.Rows * _resolution) / 2 - 1;
@@ -75,11 +75,11 @@ namespace GeneticSphere
             }
             if (cellStatus == FieldCellStatuses.Poison)
             {
-                brush = Brushes.Magenta;
+                brush = Brushes.MidnightBlue;
             }
             if (cellStatus == FieldCellStatuses.Food)
             {
-                brush = Brushes.Yellow;
+                brush = Brushes.DarkSlateBlue;
             }
             if (cellStatus == FieldCellStatuses.Frog)
             {
@@ -87,7 +87,7 @@ namespace GeneticSphere
             }
             if (cellStatus == FieldCellStatuses.FrogMutant)
             {
-                brush = Brushes.Aqua;
+                brush = Brushes.Red;
             }
 
             return brush;
