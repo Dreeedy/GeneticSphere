@@ -203,25 +203,25 @@ namespace GeneticSphere
         private void AddMutantFrogs()
         {
             List<Frog> mutantFrogsList = new List<Frog>();
-            int index = 0;
+            int countMutantFrogs = 0;
             foreach (var frog in _frogsList)
             {
                 Random rand;
                 bool frogPlaced = false;
-                while (frogPlaced != true)
+                while (frogPlaced == false)
                 {
                     rand = new Random();
                     int posX = rand.Next(0, GameRules.Cols);
                     int posY = rand.Next(0, GameRules.Rows);
                     if (_field[posX, posY] == FieldCellStatuses.Empty)
                     {
-                        if (index % 8 == 0)
+                        if (countMutantFrogs < GameRules.MaxCoutnMutants)// типо было каждая 8
                         {
                             mutantFrogsList.Add( new Frog( posX, posY, PerformMutation(frog.Genome), FieldCellStatuses.FrogMutant) );
                         }
                         else
                         {
-                            mutantFrogsList.Add(new Frog(posX, posY, frog.Genome));
+                            mutantFrogsList.Add( new Frog(posX, posY, frog.Genome) );
                         }
 
                         _field[posX, posY] = frog.FrogType;
@@ -229,7 +229,7 @@ namespace GeneticSphere
                         frogPlaced = true;
                     }
                 }
-                index++;
+                countMutantFrogs++;
             }
             _frogsList.Clear();
             foreach (var mutantFrog in mutantFrogsList)

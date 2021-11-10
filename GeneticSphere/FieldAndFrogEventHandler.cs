@@ -35,10 +35,10 @@ namespace GeneticSphere
                 else
                 {
                     countIsAliveFrogs = _frogsList.Where(f => f.IsAlive).Count();
-                    if (countIsAliveFrogs == 8)
+                    if (countIsAliveFrogs == GameRules.NumberSurvivors)
                     {
                         List<Frog> mutantFrogs = new List<Frog>();
-                        for (int i = 0; i < 8; i++)
+                        for (int i = 0; i < GameRules.NumberSurvivors; i++)
                         {
                             mutantFrogs.AddRange(_frogsList.Where(f => f.IsAlive == true));
                         }

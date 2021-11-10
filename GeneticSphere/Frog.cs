@@ -32,9 +32,9 @@ namespace GeneticSphere
 
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = GenerateWhereIsLooking();// возможно устанавливать случайно
+            WhereIsLooking = GenerateWhereIsLooking();
             FrogType = frogType;
-            HelfPoint = 99;
+            HelfPoint = GameRules.MaxHelfPoints;
             PosX = posX;
             PosY = posY;
         }
@@ -42,9 +42,9 @@ namespace GeneticSphere
         {
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = GenerateWhereIsLooking();// возможно устанавливать случайно
+            WhereIsLooking = GenerateWhereIsLooking();
             FrogType = frogType;
-            HelfPoint = 99;
+            HelfPoint = GameRules.MaxHelfPoints;
             PosX = posX;
             PosY = posY;
             this.Genome = genome;
@@ -53,9 +53,9 @@ namespace GeneticSphere
         {
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = GenerateWhereIsLooking();// возможно устанавливать случайно
+            WhereIsLooking = GenerateWhereIsLooking();
             FrogType = frog.FrogType;
-            HelfPoint = 99;
+            HelfPoint = GameRules.MaxHelfPoints;
             PosX = frog.PosX;
             PosY = frog.PosY;
             this.Genome = frog.Genome;
