@@ -98,7 +98,7 @@ namespace GeneticSphere
             // lab_Frogs
             // 
             this.lab_Frogs.AutoSize = true;
-            this.lab_Frogs.Location = new System.Drawing.Point(206, 27);
+            this.lab_Frogs.Location = new System.Drawing.Point(182, 27);
             this.lab_Frogs.Name = "lab_Frogs";
             this.lab_Frogs.Size = new System.Drawing.Size(38, 15);
             this.lab_Frogs.TabIndex = 22;

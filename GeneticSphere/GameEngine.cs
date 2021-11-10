@@ -77,7 +77,7 @@ namespace GeneticSphere
                 return;
             }
 
-            FieldAndFrogEventHandler handler = new FieldAndFrogEventHandler(GetField(), GameRules.Cols, GameRules.Rows, _frogsList);
+            FieldAndFrogEventHandler handler = new FieldAndFrogEventHandler(GetField(), _frogsList);
             handler.NextGeneration();
             _field = handler.GetField();
             _frogsList = handler.GetFrogs();

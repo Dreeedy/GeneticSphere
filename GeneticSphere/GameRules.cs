@@ -26,11 +26,11 @@ namespace GeneticSphere
         #endregion
 
         #region FROGS
-        // Количество жаб (ботов)
+        // Максимальное кол-во жаб
         public static int MaxCoutnFrogs { get; } = 64;
         // Кол-во выживщих, жаб, которые дадут новое поколение
         public static int NumberSurvivors { get; } = 8;
-        // Кол-во мутантов
+        // Кол-во мутантов (жаб с измененнными генами)
         public static int MaxCoutnMutants { get; } = 32;//
         // Кол-во мутированных генов
         public static int MaxMutantGens { get; } = 1;
@@ -39,6 +39,10 @@ namespace GeneticSphere
         public static int MinHelfPoints { get; } = 1;
         // Размер генома 
         public static int GenomeSize { get; } = 64;
+        // Кол-во живых обычных жаб
+        public static int CountAliveFrogs { get; set; }
+        // Кол-во живых мутантов
+        public static int CountAliveMutants { get; set; }
         #endregion
 
         #region RENDERING

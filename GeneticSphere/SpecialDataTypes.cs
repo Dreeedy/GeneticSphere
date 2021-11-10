@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeneticSphere
 {
-    public enum FieldCellStatuses : byte
+    internal enum FieldCellStatuses : byte
     {
         Empty = 0,// в ячейке ничего нет
         Wall = 1,// в ячейке есть стена
@@ -16,7 +16,7 @@ namespace GeneticSphere
         FrogMutant = 5// в ячейке есть лягушка мутант
     }
 
-    public enum FrogActions : int
+    internal enum FrogActions : int
     {
         LookAt315 = 0,
         LookAt0 = 1,
@@ -91,7 +91,7 @@ namespace GeneticSphere
         UnconditionalJump63 = 63,
     }
 
-    static class SpecialDataTypes
+    internal static class SpecialDataTypes
     {
     }
 }
