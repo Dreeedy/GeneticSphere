@@ -10,15 +10,11 @@ namespace GeneticSphere
     internal class FieldAndFrogEventHandler
     {
         private FieldCellStatuses[,] _field;
-        private int _cols;
-        private int _rows;
         private List<Frog> _frogsList;
 
-        public FieldAndFrogEventHandler(FieldCellStatuses[,] field, int cols, int rows, List<Frog> frogsList)
+        public FieldAndFrogEventHandler(FieldCellStatuses[,] field, List<Frog> frogsList)
         {
             _field = field;
-            _cols = cols;
-            _rows = rows;
             _frogsList = frogsList;
         }
         public void NextGeneration()
@@ -27,6 +23,9 @@ namespace GeneticSphere
 
             foreach (var frog in _frogsList)
             {
+                GameRules.CountAliveFrogs = _frogsList.Where(f => f.FrogType == FieldCellStatuses.Frog && f.IsAlive == true).Count();
+                GameRules.CountAliveMutants = _frogsList.Where(f => f.FrogType == FieldCellStatuses.FrogMutant && f.IsAlive == true).Count();
+
                 if (frog.IsAlive == false)
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;                   
@@ -38,7 +37,7 @@ namespace GeneticSphere
                     if (countIsAliveFrogs == GameRules.NumberSurvivors)
                     {
                         List<Frog> mutantFrogs = new List<Frog>();
-                        for (int i = 0; i < GameRules.NumberSurvivors; i++)
+                        for (int i = 0; i < GameRules.MaxCoutnFrogs; i += GameRules.NumberSurvivors)
                         {
                             mutantFrogs.AddRange(_frogsList.Where(f => f.IsAlive == true));
                         }
@@ -105,11 +104,11 @@ namespace GeneticSphere
         }
         public FieldCellStatuses[,] GetField()
         {
-            FieldCellStatuses[,] newField = new FieldCellStatuses[_cols, _rows];
+            FieldCellStatuses[,] newField = new FieldCellStatuses[GameRules.Cols, GameRules.Rows];
 
-            for (int x = 0; x < _cols; x++)
+            for (int x = 0; x < GameRules.Cols; x++)
             {
-                for (int y = 0; y < _rows; y++)
+                for (int y = 0; y < GameRules.Rows; y++)
                 {
                     newField[x, y] = _field[x, y];
                 }
