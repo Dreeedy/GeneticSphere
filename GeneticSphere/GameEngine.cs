@@ -237,35 +237,33 @@ namespace GeneticSphere
                 _frogsList.Add(mutantFrog);
             }
         }
-        private FrogActions[] PerformMutation(FrogActions[] genome)
+        private FrogActions[] PerformMutation(FrogActions[] oldGenome)
         {
-            Random rand = new Random();
-            int mutantGenIndex = rand.Next(0, GameRules.GenomeSize);
+            FrogActions[] newGenome = new FrogActions[GameRules.GenomeSize];
+            int countMutantGen = 0;
 
-            Random rand2 = new Random();
-            int mutantGenId = rand2.Next(0, 64);
-
-            FrogActions[] newGenome = new FrogActions[genome.Length];
-            for (int i = 0; i < genome.Length; i++)
+            for (int i = 0; i < oldGenome.Length; i++)
             {
-                if (mutantGenIndex == i)
+                newGenome[i] = oldGenome[i];
+            }
+
+            while (countMutantGen < GameRules.MaxMutantGens)
+            {
+                Random rand1 = new Random();
+                int genToMutationIndex = rand1.Next(0, GameRules.GenomeSize);
+                Random rand2 = new Random();
+                int newActionId = rand2.Next(0, 64);
+                FrogActions newAction = (FrogActions)newActionId;
+
+                while (newAction == oldGenome[genToMutationIndex])
                 {
-                    FrogActions newAction = (FrogActions)mutantGenId;
-                    while (newGenome[i] == newAction)
-                    {
-                        rand = new Random();
-                        mutantGenId = rand.Next(0, 64);
-                        newAction = (FrogActions)mutantGenId;                        
-                    }
-                    newGenome[i] = newAction;
+                    newActionId = rand2.Next(0, 64);
+                    newAction = (FrogActions)newActionId;
                 }
-                else
-                {
-                    newGenome[i] = genome[i];
-                }
-                
-            }          
-            return newGenome;
-        }
+                newGenome[genToMutationIndex] = newAction;
+                countMutantGen++;
+            }
+            return newGenome;            
+        }        
     }
 }

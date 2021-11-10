@@ -31,14 +31,14 @@ namespace GeneticSphere
         // Кол-во выживщих, жаб, которые дадут новое поколение
         public static int NumberSurvivors { get; } = 8;
         // Кол-во мутантов
-        public static int MaxCoutnMutants { get; } = 8;//
+        public static int MaxCoutnMutants { get; } = 32;//
         // Кол-во мутированных генов
         public static int MaxMutantGens { get; } = 1;
         // Здоровье
         public static int MaxHelfPoints { get; } = 99;
         public static int MinHelfPoints { get; } = 1;
         // Размер генома 
-        public static int GenomeSize { get; } = 128;
+        public static int GenomeSize { get; } = 64;
         #endregion
 
         
