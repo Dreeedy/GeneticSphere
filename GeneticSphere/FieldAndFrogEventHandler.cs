@@ -289,7 +289,7 @@ namespace GeneticSphere
         }
         private void TakeMoveOn(FrogActions action, Frog frog)
         {
-            if (action == FrogActions.MoveOn315 && frog.WhereIsLooking == FrogActions.TurnOn315)
+            if (action == FrogActions.MoveOn315 && frog.WhereIsTurned == FrogActions.TurnOn315)
             {
                 var targetCell = _field[frog.PosX - 1, frog.PosY + 1];
                 frog.ReactionTodiscovered(targetCell);
@@ -303,6 +303,10 @@ namespace GeneticSphere
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -311,7 +315,7 @@ namespace GeneticSphere
                     frog.PosY += 1;
                 }                
             }
-            else if (action == FrogActions.MoveOn0 && frog.WhereIsLooking == FrogActions.TurnOn0)
+            else if (action == FrogActions.MoveOn0 && frog.WhereIsTurned == FrogActions.TurnOn0)
             {
                 var targetCell = _field[frog.PosX, frog.PosY + 1];
                 frog.ReactionTodiscovered(targetCell);
@@ -325,6 +329,10 @@ namespace GeneticSphere
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -333,7 +341,7 @@ namespace GeneticSphere
                     frog.PosY += 1;
                 }                
             }
-            else if (action == FrogActions.MoveOn45 && frog.WhereIsLooking == FrogActions.TurnOn45)
+            else if (action == FrogActions.MoveOn45 && frog.WhereIsTurned == FrogActions.TurnOn45)
             {
                 var targetCell = _field[frog.PosX + 1, frog.PosY + 1];
                 frog.ReactionTodiscovered(targetCell);
@@ -347,6 +355,10 @@ namespace GeneticSphere
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -356,7 +368,7 @@ namespace GeneticSphere
                     frog.PosY += 1;
                 }                
             }
-            else if (action == FrogActions.MoveOn90 && frog.WhereIsLooking == FrogActions.TurnOn90)
+            else if (action == FrogActions.MoveOn90 && frog.WhereIsTurned == FrogActions.TurnOn90)
             {
                 var targetCell = _field[frog.PosX + 1, frog.PosY];
                 frog.ReactionTodiscovered(targetCell);
@@ -370,6 +382,10 @@ namespace GeneticSphere
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -378,7 +394,7 @@ namespace GeneticSphere
                     frog.PosX += 1;
                 }                
             }
-            else if (action == FrogActions.MoveOn135 && frog.WhereIsLooking == FrogActions.TurnOn135)
+            else if (action == FrogActions.MoveOn135 && frog.WhereIsTurned == FrogActions.TurnOn135)
             {
                 var targetCell = _field[frog.PosX + 1, frog.PosY - 1];
                 frog.ReactionTodiscovered(targetCell);
@@ -392,6 +408,10 @@ namespace GeneticSphere
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -401,7 +421,7 @@ namespace GeneticSphere
                     frog.PosY -= 1;
                 }                
             }
-            else if (action == FrogActions.MoveOn180 && frog.WhereIsLooking == FrogActions.TurnOn180)
+            else if (action == FrogActions.MoveOn180 && frog.WhereIsTurned == FrogActions.TurnOn180)
             {
                 var targetCell = _field[frog.PosX, frog.PosY - 1];
                 frog.ReactionTodiscovered(targetCell);
@@ -415,6 +435,10 @@ namespace GeneticSphere
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -423,7 +447,7 @@ namespace GeneticSphere
                     frog.PosY -= 1;
                 }                
             }
-            else if (action == FrogActions.MoveOn225 && frog.WhereIsLooking == FrogActions.TurnOn225)
+            else if (action == FrogActions.MoveOn225 && frog.WhereIsTurned == FrogActions.TurnOn225)
             {
                 var targetCell = _field[frog.PosX - 1, frog.PosY - 1];
                 frog.ReactionTodiscovered(targetCell);
@@ -437,6 +461,10 @@ namespace GeneticSphere
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
                 }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -447,7 +475,7 @@ namespace GeneticSphere
                 }
                 
             }
-            else if (action == FrogActions.MoveOn270 && frog.WhereIsLooking == FrogActions.TurnOn270)
+            else if (action == FrogActions.MoveOn270 && frog.WhereIsTurned == FrogActions.TurnOn270)
             {
                 var targetCell = _field[frog.PosX - 1, frog.PosY];
                 frog.ReactionTodiscovered(targetCell);
@@ -460,6 +488,10 @@ namespace GeneticSphere
                 {
                     frog.ReduceHelfPoints(GameRules.PoisonDamage);
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
+                }
+                else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
+                {
+                    return;
                 }
                 else
                 {
@@ -487,42 +519,42 @@ namespace GeneticSphere
         {
             if (action == FrogActions.TurnOn315)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn315;
+                frog.WhereIsTurned = FrogActions.TurnOn315;
                 frog.TakeUnconditionalJump(1);
             }
             if (action == FrogActions.TurnOn0)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn0;
+                frog.WhereIsTurned = FrogActions.TurnOn0;
                 frog.TakeUnconditionalJump(1);
             }
             if (action == FrogActions.TurnOn45)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn45;
+                frog.WhereIsTurned = FrogActions.TurnOn45;
                 frog.TakeUnconditionalJump(1);
             }
             if (action == FrogActions.TurnOn90)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn90;
+                frog.WhereIsTurned = FrogActions.TurnOn90;
                 frog.TakeUnconditionalJump(1);
             }
             if (action == FrogActions.TurnOn135)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn135;
+                frog.WhereIsTurned = FrogActions.TurnOn135;
                 frog.TakeUnconditionalJump(1);
             }
             if (action == FrogActions.TurnOn180)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn180;
+                frog.WhereIsTurned = FrogActions.TurnOn180;
                 frog.TakeUnconditionalJump(1);
             }
             if (action == FrogActions.TurnOn225)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn225;
+                frog.WhereIsTurned = FrogActions.TurnOn225;
                 frog.TakeUnconditionalJump(1);
             }
             if (action == FrogActions.TurnOn270)
             {
-                frog.WhereIsLooking = FrogActions.TurnOn270;
+                frog.WhereIsTurned = FrogActions.TurnOn270;
                 frog.TakeUnconditionalJump(1);
             }
         }
