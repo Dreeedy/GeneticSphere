@@ -33,13 +33,15 @@ namespace GeneticSphere
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(pictureBox1.Image);
 
+            GameRules.RenderIsOn = cb_RenderToggle.Checked;
+
             timer1.Start();
         }
         private void DrawNextGeneration()            
         {
             FieldCellStatuses[,] field = _gameEngine.GetField();
 
-            if (true) // GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0
+            if (GameRules.RenderIsOn && GameEngine.Generation % GameRules.DroppedFrames == 0) // GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0
             {
                 int offsetX = (pictureBox1.Width - GameRules.Cols * _resolution) / 2 - 1;
                 int offsetY = (pictureBox1.Height - GameRules.Rows * _resolution) / 2 - 1;
@@ -58,6 +60,7 @@ namespace GeneticSphere
 
             DrawFrogsHelfPoints();
             lab_GenerationNumber.Text = GameEngine.Generation.ToString();
+            GameRules.RenderIsOn = cb_RenderToggle.Checked;
 
             _gameEngine.NextGeneration();
         }

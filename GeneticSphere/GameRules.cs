@@ -41,7 +41,14 @@ namespace GeneticSphere
         public static int GenomeSize { get; } = 64;
         #endregion
 
-        
+        #region RENDERING
+        // Отрисовывать ли кадр
+        public static bool RenderIsOn { get; set; }
+        // Сколь пропускать кадров
+        public static int DroppedFrames { get; set; } = 1; // 1 default
+        #endregion
+
+
 
 
 

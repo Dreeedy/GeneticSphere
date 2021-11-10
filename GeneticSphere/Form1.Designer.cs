@@ -32,6 +32,7 @@ namespace GeneticSphere
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cb_RenderToggle = new System.Windows.Forms.CheckBox();
             this.lab_Frogs = new System.Windows.Forms.Label();
             this.lab_LifeDuration = new System.Windows.Forms.Label();
             this.lab_GenerationNumber = new System.Windows.Forms.Label();
@@ -57,7 +58,7 @@ namespace GeneticSphere
             // splitContainer1
             // 
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.splitContainer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
@@ -65,6 +66,7 @@ namespace GeneticSphere
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cb_RenderToggle);
             this.splitContainer1.Panel1.Controls.Add(this.lab_Frogs);
             this.splitContainer1.Panel1.Controls.Add(this.lab_LifeDuration);
             this.splitContainer1.Panel1.Controls.Add(this.lab_GenerationNumber);
@@ -80,6 +82,18 @@ namespace GeneticSphere
             this.splitContainer1.Size = new System.Drawing.Size(1336, 507);
             this.splitContainer1.SplitterDistance = 412;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // cb_RenderToggle
+            // 
+            this.cb_RenderToggle.AutoSize = true;
+            this.cb_RenderToggle.Checked = true;
+            this.cb_RenderToggle.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_RenderToggle.Location = new System.Drawing.Point(12, 56);
+            this.cb_RenderToggle.Name = "cb_RenderToggle";
+            this.cb_RenderToggle.Size = new System.Drawing.Size(87, 19);
+            this.cb_RenderToggle.TabIndex = 23;
+            this.cb_RenderToggle.Text = "RenderIsOn";
+            this.cb_RenderToggle.UseVisualStyleBackColor = true;
             // 
             // lab_Frogs
             // 
@@ -211,6 +225,7 @@ namespace GeneticSphere
         private System.Windows.Forms.Label lab_LifeDuration;
         private System.Windows.Forms.Label lab_GenerationNumber;
         private System.Windows.Forms.Label lab_Frogs;
+        private System.Windows.Forms.CheckBox cb_RenderToggle;
     }
 }
 
