@@ -25,7 +25,7 @@ namespace GeneticSphere
         }
 
         private void StartGame()
-        {
+        {            
             _gameEngine = new GameEngine();
             _gameEngine.StartGame();
 
@@ -35,6 +35,7 @@ namespace GeneticSphere
             _graphics = Graphics.FromImage(pictureBox1.Image);
 
             GameRules.RenderIsOn = cb_RenderToggle.Checked;
+            GameRules.Generation = 0;
 
             timer1.Start();
         }
@@ -43,7 +44,7 @@ namespace GeneticSphere
         {
             FieldCellStatuses[,] field = _gameEngine.GetField();
 
-            if (GameRules.RenderIsOn && GameEngine.Generation % GameRules.DroppedFrames == 0) // GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0
+            if (GameRules.RenderIsOn && GameRules.Generation % GameRules.DroppedFrames == 0) // GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0
             {
                 int offsetX = (pictureBox1.Width - GameRules.Cols * _resolution) / 2 - 1;
                 int offsetY = (pictureBox1.Height - GameRules.Rows * _resolution) / 2 - 1;
@@ -61,7 +62,7 @@ namespace GeneticSphere
             }            
 
             DrawFrogsHelfPoints();
-            lab_GenerationNumber.Text = GameEngine.Generation.ToString();
+            lab_GenerationNumber.Text = GameRules.Generation.ToString();
             GameRules.RenderIsOn = cb_RenderToggle.Checked;
             lab_Frogs.Text = $"Frogs: {GameRules.CountAliveFrogs}, Mutants: {GameRules.CountAliveMutants}, Alive: {GameRules.CountAliveFrogs + GameRules.CountAliveMutants}, Death: {GameRules.MaxCoutnFrogs - (GameRules.CountAliveFrogs + GameRules.CountAliveMutants)}";
             lab_CountTurns.Text = $"CountTurns: {GameRules.CountTurns}";
@@ -136,13 +137,25 @@ namespace GeneticSphere
         {
             StartGame();
         }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             DrawNextGeneration();
-        }            
+        }    
+        
         private void stopBut_Click(object sender, EventArgs e)
         {
             StopGame();
+        }
+
+        private void but_resume_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void but_pause_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -42,8 +42,7 @@ namespace GeneticSphere
                         {
                             mutantFrogs.AddRange(_frogsList.Where(f => f.IsAlive == true));
                         }
-                        _frogsList = mutantFrogs;// сформировал новое поколение
-                        GameEngine.Generation++;
+                        _frogsList = mutantFrogs;// сформировал новое поколение                        
                         GameEngine.NewGenerationIsReady = true;
                         break;
                     }

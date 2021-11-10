@@ -16,6 +16,8 @@ namespace GeneticSphere
         public static int MaxCountFood { get; } = 2000; // default 20000
         public static int MaxCountPoison { get; } = 1000; // default 960
         public static int MaxCounWalls { get; } = 1; // default 90
+        // Номер поколения 
+        public static int Generation { get; set; } = 0;
         // Урон за каждый ход
         public static int EveryTurnDamage { get; } = 1;
         // Сколько бесплатных ходов

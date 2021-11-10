@@ -32,6 +32,8 @@ namespace GeneticSphere
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.but_pause = new System.Windows.Forms.Button();
+            this.but_resume = new System.Windows.Forms.Button();
             this.cb_RenderToggle = new System.Windows.Forms.CheckBox();
             this.lab_Frogs = new System.Windows.Forms.Label();
             this.lab_CountTurns = new System.Windows.Forms.Label();
@@ -66,6 +68,8 @@ namespace GeneticSphere
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.but_pause);
+            this.splitContainer1.Panel1.Controls.Add(this.but_resume);
             this.splitContainer1.Panel1.Controls.Add(this.cb_RenderToggle);
             this.splitContainer1.Panel1.Controls.Add(this.lab_Frogs);
             this.splitContainer1.Panel1.Controls.Add(this.lab_CountTurns);
@@ -82,6 +86,26 @@ namespace GeneticSphere
             this.splitContainer1.Size = new System.Drawing.Size(1336, 507);
             this.splitContainer1.SplitterDistance = 412;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // but_pause
+            // 
+            this.but_pause.Location = new System.Drawing.Point(108, 129);
+            this.but_pause.Name = "but_pause";
+            this.but_pause.Size = new System.Drawing.Size(90, 23);
+            this.but_pause.TabIndex = 25;
+            this.but_pause.Text = "Пауза";
+            this.but_pause.UseVisualStyleBackColor = true;
+            this.but_pause.Click += new System.EventHandler(this.but_pause_Click);
+            // 
+            // but_resume
+            // 
+            this.but_resume.Location = new System.Drawing.Point(108, 100);
+            this.but_resume.Name = "but_resume";
+            this.but_resume.Size = new System.Drawing.Size(90, 23);
+            this.but_resume.TabIndex = 24;
+            this.but_resume.Text = "Продолжить";
+            this.but_resume.UseVisualStyleBackColor = true;
+            this.but_resume.Click += new System.EventHandler(this.but_resume_Click);
             // 
             // cb_RenderToggle
             // 
@@ -135,9 +159,9 @@ namespace GeneticSphere
             // 
             this.stopBut.Location = new System.Drawing.Point(12, 129);
             this.stopBut.Name = "stopBut";
-            this.stopBut.Size = new System.Drawing.Size(75, 23);
+            this.stopBut.Size = new System.Drawing.Size(90, 23);
             this.stopBut.TabIndex = 18;
-            this.stopBut.Text = "Stop";
+            this.stopBut.Text = "Стоп";
             this.stopBut.UseVisualStyleBackColor = true;
             this.stopBut.Click += new System.EventHandler(this.stopBut_Click);
             // 
@@ -145,9 +169,9 @@ namespace GeneticSphere
             // 
             this.startBut.Location = new System.Drawing.Point(12, 100);
             this.startBut.Name = "startBut";
-            this.startBut.Size = new System.Drawing.Size(75, 23);
+            this.startBut.Size = new System.Drawing.Size(90, 23);
             this.startBut.TabIndex = 12;
-            this.startBut.Text = "Start";
+            this.startBut.Text = "Старт";
             this.startBut.UseVisualStyleBackColor = true;
             this.startBut.Click += new System.EventHandler(this.startBut_Click);
             // 
@@ -226,6 +250,8 @@ namespace GeneticSphere
         private System.Windows.Forms.Label lab_GenerationNumber;
         private System.Windows.Forms.Label lab_Frogs;
         private System.Windows.Forms.CheckBox cb_RenderToggle;
+        private System.Windows.Forms.Button but_pause;
+        private System.Windows.Forms.Button but_resume;
     }
 }
 

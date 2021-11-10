@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace GeneticSphere
 {
     internal class GameEngine
-    {     
-        public static int Generation { get; set; } = 0;
+    {   
         public static bool NewGenerationIsReady { get; set; } = false;        
         
         private int _currenCountFood = 0;        
@@ -80,6 +79,7 @@ namespace GeneticSphere
             if (GameEngine.NewGenerationIsReady == true)
             {
                 StartGame();
+                GameRules.Generation++;
                 return;
             }
 
