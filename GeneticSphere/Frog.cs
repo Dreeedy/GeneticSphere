@@ -19,7 +19,7 @@ namespace GeneticSphere
         public int PosX { get; set; }
         public int PosY { get; set; }
 
-        public FrogActions WhereIsLooking { get; set; }
+        public FrogActions WhereIsTurned { get; set; }
 
         public FieldCellStatuses FrogType { get; set; }
 
@@ -32,7 +32,7 @@ namespace GeneticSphere
 
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = GenerateWhereIsLooking();
+            WhereIsTurned = GenerateWhereIsTurned();
             FrogType = frogType;
             HelfPoint = GameRules.MaxHelfPoints;
             PosX = posX;
@@ -42,7 +42,7 @@ namespace GeneticSphere
         {
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = GenerateWhereIsLooking();
+            WhereIsTurned = GenerateWhereIsTurned();
             FrogType = frogType;
             HelfPoint = GameRules.MaxHelfPoints;
             PosX = posX;
@@ -53,7 +53,7 @@ namespace GeneticSphere
         {
             IsAlive = true;
             GenePointer = 0;
-            WhereIsLooking = GenerateWhereIsLooking();
+            WhereIsTurned = GenerateWhereIsTurned();
             FrogType = frog.FrogType;
             HelfPoint = GameRules.MaxHelfPoints;
             PosX = frog.PosX;
@@ -130,10 +130,10 @@ namespace GeneticSphere
                 Genome[i] = ((FrogActions)value);
             }
         }
-        private FrogActions GenerateWhereIsLooking()
+        private FrogActions GenerateWhereIsTurned()
         {
             Random random = new Random();
-            return (FrogActions)random.Next(0, 8);
+            return (FrogActions)random.Next(8, 16);
         }
         private void CreateGenome()
         {
