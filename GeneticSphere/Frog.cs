@@ -38,6 +38,7 @@ namespace GeneticSphere
             PosX = posX;
             PosY = posY;
         }
+
         public Frog(int posX, int posY, FrogActions[] genome, FieldCellStatuses frogType = FieldCellStatuses.Frog)
         {
             IsAlive = true;
@@ -49,6 +50,7 @@ namespace GeneticSphere
             PosY = posY;
             this.Genome = genome;
         }
+
         public Frog(Frog frog)
         {
             IsAlive = true;
@@ -60,10 +62,12 @@ namespace GeneticSphere
             PosY = frog.PosY;
             this.Genome = frog.Genome;
         }
+
         public FrogActions GetNextAction()
         {
             return this.Genome[this.GenePointer];
         }
+
         public void ReduceHelfPoints(int value)
         {
             if (this.HelfPoint - value < GameRules.MinHelfPoints)
@@ -73,7 +77,8 @@ namespace GeneticSphere
                 return;
             }
             this.HelfPoint -= value;
-        }        
+        }  
+        
         public void AddHelfPoints(int value)
         {
             if (this.HelfPoint + value > GameRules.MaxHelfPoints)
@@ -82,7 +87,8 @@ namespace GeneticSphere
                 return;
             }
             this.HelfPoint += value;
-        }        
+        }   
+        
         public void ReactionTodiscovered(FieldCellStatuses targetCell)
         {
             if (targetCell == FieldCellStatuses.Poison)
@@ -106,6 +112,7 @@ namespace GeneticSphere
                 this.TakeUnconditionalJump(5);
             }
         }
+
         public void TakeUnconditionalJump(int action)
         {
             if (this.GenePointer + action > this.Genome.Length - 1)
@@ -130,11 +137,13 @@ namespace GeneticSphere
                 Genome[i] = ((FrogActions)value);
             }
         }
+
         private FrogActions GenerateWhereIsTurned()
         {
             Random random = new Random();
             return (FrogActions)random.Next(8, 16);
         }
+
         private void CreateGenome()
         {
             Genome[0] = FrogActions.LookAt315;
@@ -209,5 +218,6 @@ namespace GeneticSphere
             Genome[62] = FrogActions.UnconditionalJump62;
             Genome[63] = FrogActions.UnconditionalJump63;
         }
+
     }
 }

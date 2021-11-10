@@ -18,6 +18,8 @@ namespace GeneticSphere
         public static int MaxCounWalls { get; } = 1; // default 90
         // Урон за каждый ход
         public static int EveryTurnDamage { get; } = 1;
+        // Сколько бесплатных ходов
+        public static int MaxNoDamageTurns { get; } = 10;
         // Урон яда
         public static int PoisonDamage { get; } = 100;
         // Сколько еда и яд, дают хп
@@ -51,8 +53,6 @@ namespace GeneticSphere
         // Сколь пропускать кадров
         public static int DroppedFrames { get; set; } = 1; // 1 default
         #endregion
-
-
 
 
 

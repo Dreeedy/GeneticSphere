@@ -23,6 +23,7 @@ namespace GeneticSphere
             InitializeComponent();
             // TODO: переделать START GAME
         }
+
         private void StartGame()
         {
             _gameEngine = new GameEngine();
@@ -37,6 +38,7 @@ namespace GeneticSphere
 
             timer1.Start();
         }
+
         private void DrawNextGeneration()            
         {
             FieldCellStatuses[,] field = _gameEngine.GetField();
@@ -65,6 +67,7 @@ namespace GeneticSphere
 
             _gameEngine.NextGeneration();
         }
+
         private Brush ChooseColoredBrush(FieldCellStatuses cellStatus)
         {
             Brush brush = Brushes.Black;
@@ -96,6 +99,7 @@ namespace GeneticSphere
 
             return brush;
         }
+
         private void DrawFrogsHelfPoints()
         {
             string str = "";
@@ -113,6 +117,7 @@ namespace GeneticSphere
             }
             lab_FrogsHelfPoints.Text = str;
         }
+
         private void StopGame()
         {
             if (!timer1.Enabled)

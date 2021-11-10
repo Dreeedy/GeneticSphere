@@ -17,6 +17,7 @@ namespace GeneticSphere
             _field = field;
             _frogsList = frogsList;
         }
+
         public void NextGeneration()
         {
             int countIsAliveFrogs = 0;
@@ -49,50 +50,8 @@ namespace GeneticSphere
                 }
                 TakeAction(frog);
             }
-        }        
-        private void TakeAction(Frog frog)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                if (frog.IsAlive == false)
-                {
-                    return;
-                }
-
-                // крутиться и осматриваться можно не больше 10 раз
-                var action = frog.GetNextAction();
-
-                if (action <= FrogActions.LookAt270)
-                {
-                    // LookAt
-                    TakeLookAt(action, frog);
-                }
-                else if (action <= FrogActions.TurnOn270)
-                {
-                    // TurnOn
-                    TakeTurnOn(action, frog);
-                }
-                else if (action <= FrogActions.MoveOn270)
-                {
-                    // MoveOn
-                    TakeMoveOn(action, frog);
-                    break;
-                }
-                else if (action <= FrogActions.Eat270)
-                {
-                    // Eat
-                    TakeEat(action, frog);
-                    break;
-                }
-                else
-                {
-                    // UnconditionalJump
-                    frog.TakeUnconditionalJump(((int)action));
-                }
-
-                frog.ReduceHelfPoints(GameRules.EveryTurnDamage);
-            }
         }
+
         public List<Frog> GetFrogs()
         {
             List<Frog> mutanFrogs = new List<Frog>();
@@ -102,6 +61,7 @@ namespace GeneticSphere
             }
             return mutanFrogs;
         }
+
         public FieldCellStatuses[,] GetField()
         {
             FieldCellStatuses[,] newField = new FieldCellStatuses[GameRules.Cols, GameRules.Rows];
@@ -116,6 +76,47 @@ namespace GeneticSphere
 
             return newField;
         }
+
+
+
+        private void TakeAction(Frog frog)
+        {
+            for (int i = 0; i < GameRules.MaxNoDamageTurns; i++)
+            {
+                if (frog.IsAlive == false)
+                {
+                    return;
+                }
+
+                var action = frog.GetNextAction();
+
+                if (action <= FrogActions.LookAt270)
+                {
+                    TakeLookAt(action, frog);
+                }
+                else if (action <= FrogActions.TurnOn270)
+                {
+                    TakeTurnOn(action, frog);
+                }
+                else if (action <= FrogActions.MoveOn270)
+                {
+                    TakeMoveOn(action, frog);
+                    break;
+                }
+                else if (action <= FrogActions.Eat270)
+                {
+                    TakeEat(action, frog);
+                    break;
+                }
+                else
+                {
+                    frog.TakeUnconditionalJump(((int)action));
+                }
+
+                frog.ReduceHelfPoints(GameRules.EveryTurnDamage);
+            }
+        }
+        
         private void TakeEat(FrogActions action, Frog frog)
         {
             if (action == FrogActions.Eat315)
@@ -287,6 +288,7 @@ namespace GeneticSphere
                 }
             }
         }
+
         private void TakeMoveOn(FrogActions action, Frog frog)
         {
             if (action == FrogActions.MoveOn315 && frog.WhereIsTurned == FrogActions.TurnOn315)
@@ -509,6 +511,7 @@ namespace GeneticSphere
             // передать управление следующему боту
             return;
         }
+
         /// <summary>
         /// Бот поворачивается в нужную сторону, а указатель команды переходит на
         /// следующую ячейку
@@ -558,6 +561,7 @@ namespace GeneticSphere
                 frog.TakeUnconditionalJump(1);
             }
         }
+
         /// <summary>
         /// Бот остается на месте, а указаль смещается в зависимости от того,
         /// что обнаружил бот
@@ -607,6 +611,7 @@ namespace GeneticSphere
                 var targetCell = _field[frog.PosX - 1, frog.PosY];
                 frog.ReactionTodiscovered(targetCell);
             }
-        }        
+        }   
+        
     }
 }

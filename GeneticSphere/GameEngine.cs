@@ -26,6 +26,7 @@ namespace GeneticSphere
         {
             _frogsList = new List<Frog>();
         }
+
         public void StartGame()
         {
             // создание игрового поля
@@ -57,18 +58,22 @@ namespace GeneticSphere
                 AddFrogs();
             }            
         }
+
         public void StopGame()
         {
 
         }
+
         public void ContinueGame()
         {
 
         }
+
         public void PauseGame()
         {
 
         }
+
         public void NextGeneration()
         {
             if (GameEngine.NewGenerationIsReady == true)
@@ -82,6 +87,7 @@ namespace GeneticSphere
             _field = handler.GetField();
             _frogsList = handler.GetFrogs();
         }
+
         public FieldCellStatuses[,] GetField()
         {
             FieldCellStatuses[,] newField = new FieldCellStatuses[GameRules.Cols, GameRules.Rows];
@@ -94,6 +100,7 @@ namespace GeneticSphere
             }
             return newField;
         }
+
         public List<int> GetFrogsHelfPoints()
         {
             List<int> frogsHelfPoints = new List<int>();
@@ -119,6 +126,7 @@ namespace GeneticSphere
                 }
             }
         }
+
         private void AddInternalWalls()
         {
             _currentCountWalls = 0;
@@ -153,6 +161,7 @@ namespace GeneticSphere
                 }
             }
         }
+
         private void AddFood()
         {
             _currenCountFood = 0;
@@ -168,6 +177,7 @@ namespace GeneticSphere
                 }
             }
         }
+
         private void AddPoison()
         {
             _currenCountPoison = 0;
@@ -183,6 +193,7 @@ namespace GeneticSphere
                 }
             }
         }
+
         private void AddFrogs()
         {
             while (_frogsList.Count < GameRules.MaxCoutnFrogs)
@@ -198,6 +209,7 @@ namespace GeneticSphere
                 }
             }
         }
+
         private void AddMutantFrogs()
         {
             List<Frog> mutantFrogsList = new List<Frog>();
@@ -213,7 +225,7 @@ namespace GeneticSphere
                     if (_field[posX, posY] == FieldCellStatuses.Empty)
                     {
                         FieldCellStatuses newCellStatus;
-                        if (countMutantFrogs < GameRules.MaxCoutnMutants)// типо было каждая 8
+                        if (countMutantFrogs < GameRules.MaxCoutnMutants)
                         {
                             mutantFrogsList.Add( new Frog( posX, posY, PerformMutation(frog.Genome), FieldCellStatuses.FrogMutant) );
                             newCellStatus = FieldCellStatuses.FrogMutant;
@@ -237,6 +249,7 @@ namespace GeneticSphere
                 _frogsList.Add(mutantFrog);
             }
         }
+
         private FrogActions[] PerformMutation(FrogActions[] oldGenome)
         {
             FrogActions[] newGenome = new FrogActions[GameRules.GenomeSize];
@@ -264,6 +277,7 @@ namespace GeneticSphere
                 countMutantGen++;
             }
             return newGenome;            
-        }        
+        }  
+        
     }
 }
