@@ -34,7 +34,7 @@ namespace GeneticSphere
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cb_RenderToggle = new System.Windows.Forms.CheckBox();
             this.lab_Frogs = new System.Windows.Forms.Label();
-            this.lab_LifeDuration = new System.Windows.Forms.Label();
+            this.lab_CountTurns = new System.Windows.Forms.Label();
             this.lab_GenerationNumber = new System.Windows.Forms.Label();
             this.lab_FrogsHelfPoints = new System.Windows.Forms.Label();
             this.stopBut = new System.Windows.Forms.Button();
@@ -68,7 +68,7 @@ namespace GeneticSphere
             // 
             this.splitContainer1.Panel1.Controls.Add(this.cb_RenderToggle);
             this.splitContainer1.Panel1.Controls.Add(this.lab_Frogs);
-            this.splitContainer1.Panel1.Controls.Add(this.lab_LifeDuration);
+            this.splitContainer1.Panel1.Controls.Add(this.lab_CountTurns);
             this.splitContainer1.Panel1.Controls.Add(this.lab_GenerationNumber);
             this.splitContainer1.Panel1.Controls.Add(this.lab_FrogsHelfPoints);
             this.splitContainer1.Panel1.Controls.Add(this.stopBut);
@@ -104,14 +104,14 @@ namespace GeneticSphere
             this.lab_Frogs.TabIndex = 22;
             this.lab_Frogs.Text = "label2";
             // 
-            // lab_LifeDuration
+            // lab_CountTurns
             // 
-            this.lab_LifeDuration.AutoSize = true;
-            this.lab_LifeDuration.Location = new System.Drawing.Point(138, 42);
-            this.lab_LifeDuration.Name = "lab_LifeDuration";
-            this.lab_LifeDuration.Size = new System.Drawing.Size(38, 15);
-            this.lab_LifeDuration.TabIndex = 21;
-            this.lab_LifeDuration.Text = "label2";
+            this.lab_CountTurns.AutoSize = true;
+            this.lab_CountTurns.Location = new System.Drawing.Point(138, 42);
+            this.lab_CountTurns.Name = "lab_CountTurns";
+            this.lab_CountTurns.Size = new System.Drawing.Size(69, 15);
+            this.lab_CountTurns.TabIndex = 21;
+            this.lab_CountTurns.Text = "CoutnTurns";
             // 
             // lab_GenerationNumber
             // 
@@ -222,7 +222,7 @@ namespace GeneticSphere
         private System.Windows.Forms.NumericUpDown numResolution;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lab_FrogsHelfPoints;
-        private System.Windows.Forms.Label lab_LifeDuration;
+        private System.Windows.Forms.Label lab_CountTurns;
         private System.Windows.Forms.Label lab_GenerationNumber;
         private System.Windows.Forms.Label lab_Frogs;
         private System.Windows.Forms.CheckBox cb_RenderToggle;

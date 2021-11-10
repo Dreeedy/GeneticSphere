@@ -29,6 +29,7 @@ namespace GeneticSphere
 
         public void StartGame()
         {
+            GameRules.CountTurns = 0;
             // создание игрового поля
             _field = new FieldCellStatuses[GameRules.Cols, GameRules.Rows];
             // заполнения поля пустыми ячейками

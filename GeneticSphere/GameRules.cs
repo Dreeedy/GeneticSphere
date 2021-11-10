@@ -10,11 +10,11 @@ namespace GeneticSphere
     {
         #region GameEngine
         // Размеры поля
-        public static int Rows { get; } = 17; // default 257
-        public static int Cols { get; } = 129; // default 257
+        public static int Rows { get; } = 65; // default 257
+        public static int Cols { get; } = 65; // default 257
         // Сколько максимум может быть объектов на карте
-        public static int MaxCountFood { get; } = 512; // default 20000
-        public static int MaxCountPoison { get; } = 64; // default 960
+        public static int MaxCountFood { get; } = 2000; // default 20000
+        public static int MaxCountPoison { get; } = 1000; // default 960
         public static int MaxCounWalls { get; } = 1; // default 90
         // Урон за каждый ход
         public static int EveryTurnDamage { get; } = 1;
@@ -25,15 +25,17 @@ namespace GeneticSphere
         // Сколько еда и яд, дают хп
         public static int FoodPoints { get; } = 59;
         public static int PoisonPoints { get; } = 99;
+        // Кол-во ходов
+        public static int CountTurns { get; set; } = 0;
         #endregion
 
         #region FROGS
         // Максимальное кол-во жаб
-        public static int MaxCoutnFrogs { get; } = 8; // default 64
+        public static int MaxCoutnFrogs { get; } = 64; // default 64
         // Кол-во выживщих, жаб, которые дадут новое поколение
-        public static int NumberSurvivors { get; } = 1; // default 8
+        public static int NumberSurvivors { get; } = 8; // default 8
         // Кол-во мутантов (жаб с измененнными генами)
-        public static int MaxCoutnMutants { get; } = 1;// defalut 8
+        public static int MaxCoutnMutants { get; } = 8;// defalut 8
         // Кол-во мутированных генов
         public static int MaxMutantGens { get; } = 1; // default 1
         // Здоровье

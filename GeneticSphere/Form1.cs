@@ -64,6 +64,7 @@ namespace GeneticSphere
             lab_GenerationNumber.Text = GameEngine.Generation.ToString();
             GameRules.RenderIsOn = cb_RenderToggle.Checked;
             lab_Frogs.Text = $"Frogs: {GameRules.CountAliveFrogs}, Mutants: {GameRules.CountAliveMutants}, Alive: {GameRules.CountAliveFrogs + GameRules.CountAliveMutants}, Death: {GameRules.MaxCoutnFrogs - (GameRules.CountAliveFrogs + GameRules.CountAliveMutants)}";
+            lab_CountTurns.Text = $"CountTurns: {GameRules.CountTurns}";
 
             _gameEngine.NextGeneration();
         }

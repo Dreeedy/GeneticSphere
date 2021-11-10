@@ -49,6 +49,7 @@ namespace GeneticSphere
                     }
                 }
                 TakeAction(frog);
+                GameRules.CountTurns++;
             }
         }
 
