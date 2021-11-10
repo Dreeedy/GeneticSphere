@@ -31,9 +31,9 @@ namespace GeneticSphere
             // создание игрового поля
             _field = new FieldCellStatuses[GameRules.Cols, GameRules.Rows];
             // заполнения поля пустыми ячейками
-            for (int x = 1; x < GameRules.Cols - 1; x++)
+            for (int x = 1; x < GameRules.Cols; x++)
             {
-                for (int y = 1; y < GameRules.Rows - 1; y++)
+                for (int y = 1; y < GameRules.Rows; y++)
                 {
                     _field[x, y] = FieldCellStatuses.Empty;
                 }
@@ -84,7 +84,7 @@ namespace GeneticSphere
         }
         public FieldCellStatuses[,] GetField()
         {
-            FieldCellStatuses[,] newField = new FieldCellStatuses[GameRules.Rows, GameRules.Cols];
+            FieldCellStatuses[,] newField = new FieldCellStatuses[GameRules.Cols, GameRules.Rows];
             for (int x = 0; x < GameRules.Cols; x++)
             {
                 for (int y = 0; y < GameRules.Rows; y++)
@@ -112,7 +112,7 @@ namespace GeneticSphere
             {
                 for (int y = 0; y < GameRules.Rows; y++)
                 {
-                    if ((x == 0 || x == 256 && y >= 0) || (y == 0 || y == 256 && x >= 0))
+                    if ((x == 0 || x == GameRules.Cols-1 && y >= 0) || (y == 0 || y == GameRules.Rows-1 && x >= 0))
                     {
                         _field[x, y] = FieldCellStatuses.Wall;
                     }
@@ -126,14 +126,14 @@ namespace GeneticSphere
             {
                 Random rand = new Random();
 
-                int xCenter = rand.Next(0, 257);
-                int yCenter = rand.Next(0, 257);
+                int xCenter = rand.Next(0, GameRules.Cols);
+                int yCenter = rand.Next(0, GameRules.Rows);
 
                 for (int x = xCenter - 1; x < xCenter + 1; x++)
                 {
                     for (int y = yCenter - 1; y < yCenter + 1; y++)
                     {
-                        if (x != xCenter && y != yCenter && x < 255 && y < 255 && x > 0 && y > 0)
+                        if (x != xCenter && y != yCenter && x < GameRules.Cols-2 && y < GameRules.Rows-2 && x > 0 && y > 0)
                         {
                             if (_field[x, y] == FieldCellStatuses.Wall)
                             {
@@ -160,8 +160,8 @@ namespace GeneticSphere
             while (_currenCountFood < GameRules.MaxCountFood)
             {
                 rand = new Random();
-                int x = rand.Next(0, 257);
-                int y = rand.Next(0, 257);
+                int x = rand.Next(0, GameRules.Cols);
+                int y = rand.Next(0, GameRules.Rows);
                 if (_field[x, y] == FieldCellStatuses.Empty)
                 {
                     _field[x, y] = FieldCellStatuses.Food;
@@ -175,8 +175,8 @@ namespace GeneticSphere
             while (_currenCountPoison < GameRules.MaxCountPoison)
             {
                 Random rand = new Random();
-                int x = rand.Next(0, 257);
-                int y = rand.Next(0, 257);
+                int x = rand.Next(0, GameRules.Cols);
+                int y = rand.Next(0, GameRules.Rows);
                 if (_field[x, y] == FieldCellStatuses.Empty)
                 {
                     _field[x, y] = FieldCellStatuses.Poison;
