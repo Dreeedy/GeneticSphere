@@ -135,7 +135,7 @@ namespace GeneticSphere
                     {
                         if (x != xCenter && y != yCenter && x < GameRules.Cols-2 && y < GameRules.Rows-2 && x > 0 && y > 0)
                         {
-                            if (_field[x, y] == FieldCellStatuses.Wall)
+                            if (_field[x, y] == FieldCellStatuses.Wall && _currentCountWalls + 2 < GameRules.MaxCounWalls)
                             {
                                 _field[xCenter, yCenter] = FieldCellStatuses.Wall;
                                 _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
@@ -156,10 +156,9 @@ namespace GeneticSphere
         private void AddFood()
         {
             _currenCountFood = 0;
-            Random rand;
             while (_currenCountFood < GameRules.MaxCountFood)
             {
-                rand = new Random();
+                Random rand = new Random();
                 int x = rand.Next(0, GameRules.Cols);
                 int y = rand.Next(0, GameRules.Rows);
                 if (_field[x, y] == FieldCellStatuses.Empty)
@@ -186,10 +185,9 @@ namespace GeneticSphere
         }
         private void AddFrogs()
         {
-            Random rand;
             while (_frogsList.Count < GameRules.MaxCoutnFrogs)
             {
-                rand = new Random();
+                Random rand = new Random();
                 int posX = rand.Next(0, GameRules.Cols);
                 int posY = rand.Next(0, GameRules.Rows);
                 if (_field[posX, posY] == FieldCellStatuses.Empty)
@@ -205,26 +203,28 @@ namespace GeneticSphere
             List<Frog> mutantFrogsList = new List<Frog>();
             int countMutantFrogs = 0;
             foreach (var frog in _frogsList)
-            {
-                Random rand;
+            {                
                 bool frogPlaced = false;
                 while (frogPlaced == false)
                 {
-                    rand = new Random();
+                    Random rand = new Random();
                     int posX = rand.Next(0, GameRules.Cols);
                     int posY = rand.Next(0, GameRules.Rows);
                     if (_field[posX, posY] == FieldCellStatuses.Empty)
                     {
+                        FieldCellStatuses newCellStatus;
                         if (countMutantFrogs < GameRules.MaxCoutnMutants)// типо было каждая 8
                         {
                             mutantFrogsList.Add( new Frog( posX, posY, PerformMutation(frog.Genome), FieldCellStatuses.FrogMutant) );
+                            newCellStatus = FieldCellStatuses.FrogMutant;
                         }
                         else
                         {
                             mutantFrogsList.Add( new Frog(posX, posY, frog.Genome) );
+                            newCellStatus = FieldCellStatuses.Frog;
                         }
 
-                        _field[posX, posY] = frog.FrogType;
+                        _field[posX, posY] = newCellStatus;
 
                         frogPlaced = true;
                     }

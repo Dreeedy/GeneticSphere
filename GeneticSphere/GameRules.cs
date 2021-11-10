@@ -27,11 +27,11 @@ namespace GeneticSphere
 
         #region FROGS
         // Максимальное кол-во жаб
-        public static int MaxCoutnFrogs { get; } = 64; // default 64
+        public static int MaxCoutnFrogs { get; } = 8; // default 64
         // Кол-во выживщих, жаб, которые дадут новое поколение
-        public static int NumberSurvivors { get; } = 8; // default 8
+        public static int NumberSurvivors { get; } = 1; // default 8
         // Кол-во мутантов (жаб с измененнными генами)
-        public static int MaxCoutnMutants { get; } = 8;// defalut 8
+        public static int MaxCoutnMutants { get; } = 1;// defalut 8
         // Кол-во мутированных генов
         public static int MaxMutantGens { get; } = 1; // default 1
         // Здоровье
