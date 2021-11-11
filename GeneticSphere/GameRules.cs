@@ -13,9 +13,17 @@ namespace GeneticSphere
         public static int Rows { get; } = 65; // default 257
         public static int Cols { get; } = 65; // default 257
         // Сколько максимум может быть объектов на карте
-        public static int MaxCountFood { get; } = 2000; // default 20000
-        public static int MaxCountPoison { get; } = 1000; // default 960
-        public static int MaxCounWalls { get; } = 1; // default 90
+        // Еда
+        public static int MaxCountFood { get; } = 1000; // default 20000
+        public static int CurrentCountFood { get; set; } = 0;
+        public static int CountRegenFoodPerTurn { get; } = 1;
+        // Яд
+        public static int MaxCountPoison { get; } = 500; // default 960        
+        public static int CurrentCountPoison { get; set; } = 0;
+        public static int CountRegenPoisonPerTurn { get; } = 0;
+        // Стены
+        public static int MaxCounWalls { get; } = 0; // default 90
+        public static int CurrentCountWalls { get; set; } = 0;
         // Номер поколения 
         public static int Generation { get; set; } = 0;
         // Урон за каждый ход
@@ -25,8 +33,8 @@ namespace GeneticSphere
         // Урон яда
         public static int PoisonDamage { get; } = 100;
         // Сколько еда и яд, дают хп
-        public static int FoodPoints { get; } = 59;
-        public static int PoisonPoints { get; } = 99;
+        public static int FoodPoints { get; } = 10;
+        public static int PoisonPoints { get; } = 50;
         // Кол-во ходов
         public static int CountTurns { get; set; } = 0;
         #endregion
@@ -39,9 +47,9 @@ namespace GeneticSphere
         // Кол-во мутантов (жаб с измененнными генами)
         public static int MaxCoutnMutants { get; } = 8;// defalut 8
         // Кол-во мутированных генов
-        public static int MaxMutantGens { get; } = 1; // default 1
+        public static int MaxMutantGens { get; } = 8; // default 1
         // Здоровье
-        public static int MaxHelfPoints { get; } = 99;
+        public static int MaxHelfPoints { get; } = 50;
         public static int MinHelfPoints { get; } = 1;
         // Размер генома 
         public static int GenomeSize { get; } = 64;

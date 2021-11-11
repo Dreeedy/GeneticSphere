@@ -47,9 +47,9 @@ namespace GeneticSphere
                         break;
                     }
                 }
-                TakeAction(frog);
-                GameRules.CountTurns++;
+                TakeAction(frog);                
             }
+            GameRules.CountTurns++;
         }
 
         public List<Frog> GetFrogs()
@@ -132,6 +132,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX - 1, frog.PosY + 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -153,6 +154,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX, frog.PosY + 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -174,6 +176,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX + 1, frog.PosY + 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -195,6 +198,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX + 1, frog.PosY] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -216,6 +220,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX + 1, frog.PosY - 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -237,6 +242,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX, frog.PosY - 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -258,6 +264,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX - 1, frog.PosY - 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -279,6 +286,7 @@ namespace GeneticSphere
                 if (targetCell == FieldCellStatuses.Food)
                 {
                     _field[frog.PosX - 1, frog.PosY] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountFood--;
                     frog.AddHelfPoints(GameRules.FoodPoints);
                 }
                 else if (targetCell == FieldCellStatuses.Poison)
@@ -309,6 +317,10 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -335,6 +347,10 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -360,6 +376,10 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
                 {
                     return;
+                }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
                 }
                 else
                 {
@@ -388,6 +408,10 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -413,6 +437,10 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
                 {
                     return;
+                }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
                 }
                 else
                 {
@@ -441,6 +469,10 @@ namespace GeneticSphere
                 {
                     return;
                 }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
+                }
                 else
                 {
                     _field[frog.PosX, frog.PosY] = FieldCellStatuses.Empty;
@@ -466,6 +498,10 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
                 {
                     return;
+                }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
                 }
                 else
                 {
@@ -494,6 +530,10 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Frog || targetCell == FieldCellStatuses.FrogMutant)
                 {
                     return;
+                }
+                else if (targetCell == FieldCellStatuses.Food)
+                {
+                    GameRules.CurrentCountFood--;
                 }
                 else
                 {

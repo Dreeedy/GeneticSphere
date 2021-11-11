@@ -9,11 +9,7 @@ namespace GeneticSphere
 {
     internal class GameEngine
     {   
-        public static bool NewGenerationIsReady { get; set; } = false;        
-        
-        private int _currenCountFood = 0;        
-        private int _currenCountPoison = 0;        
-        private int _currentCountWalls = 0;
+        public static bool NewGenerationIsReady { get; set; } = false;      
 
         private FieldCellStatuses[,] _field;
         private List<Frog> _frogsList;
@@ -87,6 +83,9 @@ namespace GeneticSphere
             handler.NextGeneration();
             _field = handler.GetField();
             _frogsList = handler.GetFrogs();
+
+            RegenFood();
+            RegenPoison();
         }
 
         public FieldCellStatuses[,] GetField()
@@ -130,8 +129,8 @@ namespace GeneticSphere
 
         private void AddInternalWalls()
         {
-            _currentCountWalls = 0;
-            while (_currentCountWalls < GameRules.MaxCounWalls)
+            GameRules.CurrentCountWalls = 0;
+            while (GameRules.CurrentCountWalls < GameRules.MaxCounWalls)
             {
                 Random rand = new Random();
 
@@ -144,18 +143,18 @@ namespace GeneticSphere
                     {
                         if (x != xCenter && y != yCenter && x < GameRules.Cols-2 && y < GameRules.Rows-2 && x > 0 && y > 0)
                         {
-                            if (_field[x, y] == FieldCellStatuses.Wall && _currentCountWalls + 2 < GameRules.MaxCounWalls)
+                            if (_field[x, y] == FieldCellStatuses.Wall && GameRules.CurrentCountWalls <= GameRules.MaxCounWalls)
                             {
                                 _field[xCenter, yCenter] = FieldCellStatuses.Wall;
                                 _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
-                                _currentCountWalls += 2;
+                                GameRules.CurrentCountWalls += 2;
                             }
                             else
                             {
                                 _field[xCenter, yCenter + 1] = FieldCellStatuses.Wall;
                                 _field[xCenter, yCenter] = FieldCellStatuses.Wall;
                                 _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
-                                _currentCountWalls += 3;
+                                GameRules.CurrentCountWalls += 3;
                             }
                         }
                     }
@@ -165,8 +164,8 @@ namespace GeneticSphere
 
         private void AddFood()
         {
-            _currenCountFood = 0;
-            while (_currenCountFood < GameRules.MaxCountFood)
+            GameRules.CurrentCountFood = 0;
+            while (GameRules.CurrentCountFood < GameRules.MaxCountFood)
             {
                 Random rand = new Random();
                 int x = rand.Next(0, GameRules.Cols);
@@ -174,15 +173,15 @@ namespace GeneticSphere
                 if (_field[x, y] == FieldCellStatuses.Empty)
                 {
                     _field[x, y] = FieldCellStatuses.Food;
-                    _currenCountFood++;
+                    GameRules.CurrentCountFood++;
                 }
             }
         }
 
         private void AddPoison()
         {
-            _currenCountPoison = 0;
-            while (_currenCountPoison < GameRules.MaxCountPoison)
+            GameRules.CurrentCountPoison = 0;
+            while (GameRules.CurrentCountPoison < GameRules.MaxCountPoison)
             {
                 Random rand = new Random();
                 int x = rand.Next(0, GameRules.Cols);
@@ -190,7 +189,7 @@ namespace GeneticSphere
                 if (_field[x, y] == FieldCellStatuses.Empty)
                 {
                     _field[x, y] = FieldCellStatuses.Poison;
-                    _currenCountPoison++;
+                    GameRules.CurrentCountPoison++;
                 }
             }
         }
@@ -278,7 +277,34 @@ namespace GeneticSphere
                 countMutantGen++;
             }
             return newGenome;            
-        }  
+        }
+        
+        private void RegenFood()
+        {
+            if (GameRules.CurrentCountFood + GameRules.CountRegenFoodPerTurn >= GameRules.MaxCountFood)
+            {
+                return;
+            }
+
+            int currentFood = GameRules.CurrentCountFood;
+            while (GameRules.CurrentCountFood < currentFood + GameRules.CountRegenFoodPerTurn)
+            {
+                Random random = new Random();
+                int x = random.Next(0, GameRules.Cols);
+                int y = random.Next(0, GameRules.Rows);
+
+                if ( _field[x, y] == FieldCellStatuses.Empty )
+                {
+                    _field[x, y] = FieldCellStatuses.Food;
+                    GameRules.CurrentCountFood++;
+                }
+            }
+        }
+
+        private void RegenPoison()
+        {
+
+        }
         
     }
 }
