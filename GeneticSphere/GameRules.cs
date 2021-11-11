@@ -14,13 +14,13 @@ namespace GeneticSphere
         public static int Cols { get; } = 65; // default 257
         // Сколько максимум может быть объектов на карте
         // Еда
-        public static int MaxCountFood { get; } = 1000; // default 20000
+        public static int MaxCountFood { get; } = 750; // default 20000
         public static int CurrentCountFood { get; set; } = 0;
         public static int CountRegenFoodPerTurn { get; } = 1;
         // Яд
-        public static int MaxCountPoison { get; } = 500; // default 960        
+        public static int MaxCountPoison { get; } = 250; // default 960        
         public static int CurrentCountPoison { get; set; } = 0;
-        public static int CountRegenPoisonPerTurn { get; } = 0;
+        public static int CountRegenPoisonPerTurn { get; } = 1;
         // Стены
         public static int MaxCounWalls { get; } = 0; // default 90
         public static int CurrentCountWalls { get; set; } = 0;

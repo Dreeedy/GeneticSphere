@@ -304,6 +304,24 @@ namespace GeneticSphere
         private void RegenPoison()
         {
 
+            if (GameRules.CurrentCountPoison + GameRules.CountRegenPoisonPerTurn >= GameRules.MaxCountPoison)
+            {
+                return;
+            }
+
+            int currentPoison = GameRules.CurrentCountPoison;
+            while (GameRules.CurrentCountPoison < currentPoison + GameRules.CountRegenPoisonPerTurn)
+            {
+                Random random = new Random();
+                int x = random.Next(0, GameRules.Cols);
+                int y = random.Next(0, GameRules.Rows);
+
+                if (_field[x, y] == FieldCellStatuses.Empty)
+                {
+                    _field[x, y] = FieldCellStatuses.Poison;
+                    GameRules.CurrentCountPoison++;
+                }
+            }
         }
         
     }

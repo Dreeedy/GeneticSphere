@@ -138,6 +138,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX - 1, frog.PosY + 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
@@ -160,6 +161,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX, frog.PosY + 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
@@ -182,6 +184,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX + 1, frog.PosY + 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
@@ -204,6 +207,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX + 1, frog.PosY] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
@@ -226,6 +230,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX + 1, frog.PosY - 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
@@ -248,6 +253,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX, frog.PosY - 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
@@ -270,6 +276,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX - 1, frog.PosY - 1] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
@@ -292,6 +299,7 @@ namespace GeneticSphere
                 else if (targetCell == FieldCellStatuses.Poison)
                 {
                     _field[frog.PosX - 1, frog.PosY] = FieldCellStatuses.Empty;
+                    GameRules.CurrentCountPoison--;
                     frog.AddHelfPoints(GameRules.PoisonPoints);
                 }
             }
