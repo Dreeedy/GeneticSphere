@@ -37,6 +37,8 @@ namespace GeneticSphere
         public static int PoisonPoints { get; } = 50;
         // Кол-во ходов
         public static int CountTurns { get; set; } = 0;
+        // Разрешение (размер одной клетки в px) 
+        public static int Resolution { get; set; } = 3;
         #endregion
 
         #region FROGS

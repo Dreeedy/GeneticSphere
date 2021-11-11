@@ -14,14 +14,16 @@ namespace GeneticSphere
     public partial class Form1 : Form
     {
         private Graphics _graphics;
-        private int _resolution;
 
         private GameEngine _gameEngine;
 
         public Form1()
         {
             InitializeComponent();
-            // TODO: переделать START GAME
+
+            button_StartNewWorld.Enabled = true;
+            button_pause.Enabled = false;
+            button_resume.Enabled = false;
         }
 
         private void StartGame()
@@ -29,13 +31,17 @@ namespace GeneticSphere
             _gameEngine = new GameEngine();
             _gameEngine.StartGame();
 
-            _resolution = (int)numResolution.Value;
+            GameRules.Resolution = (int)numResolution.Value;
 
             pictureBox1.Image = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             _graphics = Graphics.FromImage(pictureBox1.Image);
 
             GameRules.RenderIsOn = cb_RenderToggle.Checked;
             GameRules.Generation = 0;
+
+            button_StartNewWorld.Enabled = true;
+            button_pause.Enabled = true;
+            button_resume.Enabled = false;
 
             timer1.Start();
         }
@@ -46,8 +52,8 @@ namespace GeneticSphere
 
             if (GameRules.RenderIsOn && GameRules.Generation % GameRules.DroppedFrames == 0) // GameEngine.Generation > 0 && GameEngine.Generation % 10 == 0
             {
-                int offsetX = (pictureBox1.Width - GameRules.Cols * _resolution) / 2 - 1;
-                int offsetY = (pictureBox1.Height - GameRules.Rows * _resolution) / 2 - 1;
+                int offsetX = (pictureBox1.Width - GameRules.Cols * GameRules.Resolution) / 2 - 1;
+                int offsetY = (pictureBox1.Height - GameRules.Rows * GameRules.Resolution) / 2 - 1;
 
                 _graphics.Clear(Color.Black);
                 for (int x = 0; x < GameRules.Cols; x++)
@@ -55,17 +61,18 @@ namespace GeneticSphere
                     for (int y = 0; y < GameRules.Rows; y++)
                     {
                         Brush brush = ChooseColoredBrush(field[x, y]);
-                        _graphics.FillRectangle(brush, x * _resolution + offsetX, y * _resolution + offsetY, _resolution - 1, _resolution - 1);
+                        _graphics.FillRectangle(brush, x * GameRules.Resolution + offsetX, y * GameRules.Resolution + offsetY, GameRules.Resolution - 1, GameRules.Resolution - 1);
                     }
                 }
                 pictureBox1.Refresh();
             }            
 
             DrawFrogsHelfPoints();
-            lab_GenerationNumber.Text = GameRules.Generation.ToString();
+            label_GenerationNumber.Text = $"Поколение: {GameRules.Generation}";
             GameRules.RenderIsOn = cb_RenderToggle.Checked;
-            lab_Frogs.Text = $"Frogs: {GameRules.CountAliveFrogs}, Mutants: {GameRules.CountAliveMutants}, Alive: {GameRules.CountAliveFrogs + GameRules.CountAliveMutants}, Death: {GameRules.MaxCoutnFrogs - (GameRules.CountAliveFrogs + GameRules.CountAliveMutants)}";
-            lab_CountTurns.Text = $"CountTurns: {GameRules.CountTurns}";
+            label_Frogs.Text = $"Жаб: {GameRules.CountAliveFrogs} Мутантов: {GameRules.CountAliveMutants}" + "\r\n" + $"Живых: {GameRules.CountAliveFrogs + GameRules.CountAliveMutants} Мертвых: {GameRules.MaxCoutnFrogs - (GameRules.CountAliveFrogs + GameRules.CountAliveMutants)}";
+            label_CountTurns.Text = $"Ход: {GameRules.CountTurns}";
+            GameRules.Resolution = (int)numResolution.Value;
 
             _gameEngine.NextGeneration();
         }
@@ -117,10 +124,10 @@ namespace GeneticSphere
                 str += item + " | ";
                 index++;
             }
-            lab_FrogsHelfPoints.Text = str;
+            label_FrogsHelfPoints.Text = str;
         }
 
-        private void StopGame()
+        private void PauseGame()
         {
             if (!timer1.Enabled)
             {
@@ -128,34 +135,31 @@ namespace GeneticSphere
             }
             timer1.Stop();
 
-            numResolution.Enabled = true;
+            button_pause.Enabled = false;
+            button_resume.Enabled = true;
         }
 
-
-
-        private void startBut_Click(object sender, EventArgs e)
+        private void button_StartNewWorld_Click(object sender, EventArgs e)
         {
             StartGame();
+        }
+
+        private void button_pause_Click(object sender, EventArgs e)
+        {
+            PauseGame();
+        }
+
+        private void button_resume_Click(object sender, EventArgs e)
+        {
+            button_pause.Enabled = true;
+            button_resume.Enabled = false;
+
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             DrawNextGeneration();
-        }    
-        
-        private void stopBut_Click(object sender, EventArgs e)
-        {
-            StopGame();
-        }
-
-        private void but_resume_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void but_pause_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
