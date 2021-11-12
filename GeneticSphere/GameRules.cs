@@ -14,7 +14,7 @@ namespace GeneticSphere
         public static int Cols { get; } = 65; // default 257
         // Сколько максимум может быть объектов на карте
         // Еда
-        public static int MaxCountFood { get; } = 750; // default 20000
+        public static int MaxCountFood { get; } = 1250; // default 20000
         public static int CurrentCountFood { get; set; } = 0;
         public static int CountRegenFoodPerTurn { get; } = 1;
         // Яд
@@ -22,7 +22,7 @@ namespace GeneticSphere
         public static int CurrentCountPoison { get; set; } = 0;
         public static int CountRegenPoisonPerTurn { get; } = 1;
         // Стены
-        public static int MaxCounWalls { get; } = 0; // default 90
+        public static int MaxCounWalls { get; } = 90; // default 90
         public static int CurrentCountWalls { get; set; } = 0;
         // Номер поколения 
         public static int Generation { get; set; } = 0;
@@ -47,9 +47,9 @@ namespace GeneticSphere
         // Кол-во выживщих, жаб, которые дадут новое поколение
         public static int NumberSurvivors { get; } = 8; // default 8
         // Кол-во мутантов (жаб с измененнными генами)
-        public static int MaxCoutnMutants { get; } = 8;// defalut 8
+        public static int MaxCoutnMutants { get; } = 32;// defalut 8
         // Кол-во мутированных генов
-        public static int MaxMutantGens { get; } = 8; // default 1
+        public static int MaxMutantGens { get; } = 1; // default 1
         // Здоровье
         public static int MaxHelfPoints { get; } = 50;
         public static int MinHelfPoints { get; } = 1;

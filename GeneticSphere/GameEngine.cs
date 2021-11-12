@@ -130,35 +130,102 @@ namespace GeneticSphere
         private void AddInternalWalls()
         {
             GameRules.CurrentCountWalls = 0;
-            while (GameRules.CurrentCountWalls < GameRules.MaxCounWalls)
+            while (GameRules.CurrentCountWalls + 3 < GameRules.MaxCounWalls)
             {
                 Random rand = new Random();
+                int xCenter = rand.Next(2, GameRules.Cols - 2);
+                int yCenter = rand.Next(2, GameRules.Rows - 2);
 
-                int xCenter = rand.Next(0, GameRules.Cols);
-                int yCenter = rand.Next(0, GameRules.Rows);
+                int wallType = rand.Next(0, 3);
 
-                for (int x = xCenter - 1; x < xCenter + 1; x++)
+                GenerateHorizontalWall(xCenter, yCenter, wallType);
+                GenerateVertikalWall(xCenter, yCenter, wallType);
+                CrossWall(xCenter, yCenter, wallType);                
+            }
+        }        
+
+        private void GenerateHorizontalWall(int xCenter, int yCenter, int wallType)
+        {
+            if (wallType == 0 && GameRules.CurrentCountWalls + 3 < GameRules.MaxCounWalls)
+            {
+                if (_field[xCenter - 1, yCenter] != FieldCellStatuses.Empty)
                 {
-                    for (int y = yCenter - 1; y < yCenter + 1; y++)
-                    {
-                        if (x != xCenter && y != yCenter && x < GameRules.Cols-2 && y < GameRules.Rows-2 && x > 0 && y > 0)
-                        {
-                            if (_field[x, y] == FieldCellStatuses.Wall && GameRules.CurrentCountWalls <= GameRules.MaxCounWalls)
-                            {
-                                _field[xCenter, yCenter] = FieldCellStatuses.Wall;
-                                _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
-                                GameRules.CurrentCountWalls += 2;
-                            }
-                            else
-                            {
-                                _field[xCenter, yCenter + 1] = FieldCellStatuses.Wall;
-                                _field[xCenter, yCenter] = FieldCellStatuses.Wall;
-                                _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
-                                GameRules.CurrentCountWalls += 3;
-                            }
-                        }
-                    }
+                    return;
                 }
+                if (_field[xCenter, yCenter] != FieldCellStatuses.Empty && _field[xCenter, yCenter] != FieldCellStatuses.Wall)
+                {
+                    return;
+                }
+                if (_field[xCenter + 1, yCenter] != FieldCellStatuses.Empty)
+                {
+                    return;
+                }
+                _field[xCenter - 1, yCenter] = FieldCellStatuses.Wall;
+                _field[xCenter, yCenter] = FieldCellStatuses.Wall;
+                _field[xCenter + 1, yCenter] = FieldCellStatuses.Wall;
+                GameRules.CurrentCountWalls += 3;
+            }
+        }
+
+        private void GenerateVertikalWall(int xCenter, int yCenter, int wallType)
+        {
+            if (wallType == 1 && GameRules.CurrentCountWalls + 3 < GameRules.MaxCounWalls)
+            {
+                if (_field[xCenter, yCenter - 1] != FieldCellStatuses.Empty)
+                {
+                    return;
+                }
+                if (_field[xCenter, yCenter] != FieldCellStatuses.Empty && _field[xCenter, yCenter] != FieldCellStatuses.Wall)
+                {
+                    return;
+                }
+                if (_field[xCenter, yCenter + 1] != FieldCellStatuses.Empty)
+                {
+                    return;
+                }
+                _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
+                _field[xCenter, yCenter] = FieldCellStatuses.Wall;
+                _field[xCenter, yCenter + 1] = FieldCellStatuses.Wall;
+                GameRules.CurrentCountWalls += 3;
+            }
+        }
+
+        private void CrossWall(int xCenter, int yCenter, int wallType)
+        {
+            if (wallType == 2 && GameRules.CurrentCountWalls + 5 < GameRules.MaxCounWalls)
+            {
+                if (_field[xCenter - 1, yCenter] != FieldCellStatuses.Empty)
+                {
+                    return;
+                }
+                if (_field[xCenter, yCenter] != FieldCellStatuses.Empty && _field[xCenter, yCenter] != FieldCellStatuses.Wall)
+                {
+                    return;
+                }
+                if (_field[xCenter + 1, yCenter] != FieldCellStatuses.Empty)
+                {
+                    return;
+                }
+                if (_field[xCenter, yCenter - 1] != FieldCellStatuses.Empty)
+                {
+                    return;
+                }
+                if (_field[xCenter, yCenter] != FieldCellStatuses.Empty && _field[xCenter, yCenter] != FieldCellStatuses.Wall)
+                {
+                    return;
+                }
+                if (_field[xCenter, yCenter + 1] != FieldCellStatuses.Empty)
+                {
+                    return;
+                }
+
+                _field[xCenter - 1, yCenter] = FieldCellStatuses.Wall;
+                _field[xCenter, yCenter - 1] = FieldCellStatuses.Wall;
+                _field[xCenter, yCenter] = FieldCellStatuses.Wall;
+                _field[xCenter + 1, yCenter] = FieldCellStatuses.Wall;
+                _field[xCenter, yCenter + 1] = FieldCellStatuses.Wall;
+
+                GameRules.CurrentCountWalls += 5;
             }
         }
 
