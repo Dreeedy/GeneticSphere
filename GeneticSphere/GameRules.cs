@@ -59,6 +59,9 @@ namespace GeneticSphere
         public static int CountAliveFrogs { get; set; }
         // Кол-во живых мутантов
         public static int CountAliveMutants { get; set; }
+        // Текущий геном, чтобы сохранить его
+        public static string GenomeToSave { get; set; }
+        public static string GenomeToLoad { get; set; }
         #endregion
 
         #region RENDERING

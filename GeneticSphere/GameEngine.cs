@@ -84,6 +84,14 @@ namespace GeneticSphere
             _field = handler.GetField();
             _frogsList = handler.GetFrogs();
 
+            GameRules.GenomeToSave = "";
+            foreach (var item in _frogsList.Where(f => f.IsAlive == true).First().Genome)
+            {
+                int value = (int)item;
+                GameRules.GenomeToSave += ( value.ToString() + ' ' );
+            }
+            
+
             RegenFood();
             RegenPoison();
         }

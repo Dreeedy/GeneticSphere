@@ -32,6 +32,7 @@ namespace GeneticSphere
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button_saveGenome = new System.Windows.Forms.Button();
             this.button_pause = new System.Windows.Forms.Button();
             this.button_resume = new System.Windows.Forms.Button();
             this.cb_RenderToggle = new System.Windows.Forms.CheckBox();
@@ -43,6 +44,7 @@ namespace GeneticSphere
             this.label1 = new System.Windows.Forms.Label();
             this.numResolution = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button_loadGenome = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -67,6 +69,8 @@ namespace GeneticSphere
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button_loadGenome);
+            this.splitContainer1.Panel1.Controls.Add(this.button_saveGenome);
             this.splitContainer1.Panel1.Controls.Add(this.button_pause);
             this.splitContainer1.Panel1.Controls.Add(this.button_resume);
             this.splitContainer1.Panel1.Controls.Add(this.cb_RenderToggle);
@@ -84,6 +88,16 @@ namespace GeneticSphere
             this.splitContainer1.Size = new System.Drawing.Size(1336, 507);
             this.splitContainer1.SplitterDistance = 412;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // button_saveGenome
+            // 
+            this.button_saveGenome.Location = new System.Drawing.Point(12, 248);
+            this.button_saveGenome.Name = "button_saveGenome";
+            this.button_saveGenome.Size = new System.Drawing.Size(150, 23);
+            this.button_saveGenome.TabIndex = 26;
+            this.button_saveGenome.Text = "Сохранить геном";
+            this.button_saveGenome.UseVisualStyleBackColor = true;
+            this.button_saveGenome.Click += new System.EventHandler(this.button_saveGenome_Click);
             // 
             // button_pause
             // 
@@ -210,6 +224,16 @@ namespace GeneticSphere
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
+            // button_loadGenome
+            // 
+            this.button_loadGenome.Location = new System.Drawing.Point(10, 277);
+            this.button_loadGenome.Name = "button_loadGenome";
+            this.button_loadGenome.Size = new System.Drawing.Size(152, 23);
+            this.button_loadGenome.TabIndex = 27;
+            this.button_loadGenome.Text = "Загрузить геном";
+            this.button_loadGenome.UseVisualStyleBackColor = true;
+            this.button_loadGenome.Click += new System.EventHandler(this.button_loadGenome_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -244,6 +268,8 @@ namespace GeneticSphere
         private System.Windows.Forms.CheckBox cb_RenderToggle;
         private System.Windows.Forms.Button button_pause;
         private System.Windows.Forms.Button button_resume;
+        private System.Windows.Forms.Button button_saveGenome;
+        private System.Windows.Forms.Button button_loadGenome;
     }
 }
 

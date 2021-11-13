@@ -17,17 +17,25 @@ namespace GeneticSphere
 
         private GameEngine _gameEngine;
 
+        private NotebookSave _notebookSave;
+        private NotebookLoad _notebookLoad;
+
         public Form1()
         {
             InitializeComponent();
 
+            _notebookSave = new NotebookSave("Genomes");
+            _notebookLoad = new NotebookLoad("Genomes");
+
             button_StartNewWorld.Enabled = true;
             button_pause.Enabled = false;
             button_resume.Enabled = false;
+
+
         }
 
         private void StartGame()
-        {            
+        {           
             _gameEngine = new GameEngine();
             _gameEngine.StartGame();
 
@@ -160,6 +168,18 @@ namespace GeneticSphere
         private void timer1_Tick(object sender, EventArgs e)
         {
             DrawNextGeneration();
+        }
+
+        private void button_saveGenome_Click(object sender, EventArgs e)
+        {
+            string genomeFileName = $"F{GameRules.MaxCountFood}_P{GameRules.MaxCountPoison}_W{GameRules.MaxCounWalls}_MCF{GameRules.MaxCoutnFrogs}_G{GameRules.Generation.ToString()}";
+            _notebookSave.Save(GameRules.GenomeToSave, genomeFileName);
+        }
+
+        private void button_loadGenome_Click(object sender, EventArgs e)
+        {
+            string text = "";
+            text = _notebookLoad.Load();
         }
     }
 }
