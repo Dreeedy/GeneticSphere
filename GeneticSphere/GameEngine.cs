@@ -14,12 +14,16 @@ namespace GeneticSphere
         private FieldCellStatuses[,] _field;
         private List<Frog> _frogsList;
 
+        private NotebookLoad _notebookLoad;
+        FrogActions[] loadedGenome;
+
         public static int CountFrogs { get; set; } = 0;
         public static int CoutnMutants { get; set; } = 0;
 
         public GameEngine()
         {
             _frogsList = new List<Frog>();
+            _notebookLoad = new NotebookLoad("Genomes");
         }
 
         public void StartGame()
@@ -271,6 +275,12 @@ namespace GeneticSphere
 
         private void AddFrogs()
         {
+            if (GameRules.StartWithLoadedGenome == true)
+            {
+                _notebookLoad = new NotebookLoad("Genomes");
+                loadedGenome = _notebookLoad.Load();
+            }            
+
             while (_frogsList.Count < GameRules.MaxCoutnFrogs)
             {
                 Random rand = new Random();
@@ -278,11 +288,22 @@ namespace GeneticSphere
                 int posY = rand.Next(0, GameRules.Rows);
                 if (_field[posX, posY] == FieldCellStatuses.Empty)
                 {
-                    var frog = new Frog(posX, posY);
-                    _field[posX, posY] = frog.FrogType;
-                    _frogsList.Add(frog);
+                    if (GameRules.StartWithLoadedGenome == true)
+                    {
+                        var frog = new Frog(posX, posY, loadedGenome);
+                        _field[posX, posY] = frog.FrogType;
+                        _frogsList.Add(frog);
+                    }
+                    else
+                    {
+                        var frog = new Frog(posX, posY);
+                        _field[posX, posY] = frog.FrogType;
+                        _frogsList.Add(frog);
+                    }                    
                 }
             }
+
+            GameRules.StartWithLoadedGenome = false;
         }
 
         private void AddMutantFrogs()

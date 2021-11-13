@@ -23,22 +23,32 @@ namespace GeneticSphere
             _baseDirectory = GetBaseDirectory();
         }
 
-        public string Load()
+        public FrogActions[] Load()
         {           
             if (_openFileDialog.ShowDialog() != DialogResult.Cancel)
             {
-                string fileText = "";
-
-                // получаем выбранный файл
                 string filename = _openFileDialog.FileName;
-                // читаем файл в строку
-                fileText = System.IO.File.ReadAllText(filename);
 
-                return fileText;
+                string fileText = System.IO.File.ReadAllText(filename);
+
+                FrogActions[] loadedGenome = new FrogActions[GameRules.GenomeSize];
+
+                int index = 0;
+                foreach (string gen in fileText.Split(' '))
+                {
+                    if (index == GameRules.GenomeSize - 1)
+                    {
+                        break;
+                    }
+                    loadedGenome[index] = (FrogActions)int.Parse(gen);
+                    index++;
+                }
+
+                return loadedGenome;
             }
             else
             {
-                return "";
+                return new FrogActions[GameRules.GenomeSize];
             }
         }
 

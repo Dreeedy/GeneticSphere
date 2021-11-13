@@ -18,20 +18,18 @@ namespace GeneticSphere
         private GameEngine _gameEngine;
 
         private NotebookSave _notebookSave;
-        private NotebookLoad _notebookLoad;
 
         public Form1()
         {
             InitializeComponent();
 
-            _notebookSave = new NotebookSave("Genomes");
-            _notebookLoad = new NotebookLoad("Genomes");
+            _notebookSave = new NotebookSave("Genomes");           
 
             button_StartNewWorld.Enabled = true;
             button_pause.Enabled = false;
             button_resume.Enabled = false;
-
-
+            button_saveGenome.Enabled = false;
+            button_loadGenome.Enabled = false;
         }
 
         private void StartGame()
@@ -46,10 +44,6 @@ namespace GeneticSphere
 
             GameRules.RenderIsOn = cb_RenderToggle.Checked;
             GameRules.Generation = 0;
-
-            button_StartNewWorld.Enabled = true;
-            button_pause.Enabled = true;
-            button_resume.Enabled = false;
 
             timer1.Start();
         }
@@ -141,19 +135,27 @@ namespace GeneticSphere
             {
                 return;
             }
-            timer1.Stop();
-
-            button_pause.Enabled = false;
-            button_resume.Enabled = true;
+            timer1.Stop();            
         }
 
         private void button_StartNewWorld_Click(object sender, EventArgs e)
         {
+            button_StartNewWorld.Enabled = true;
+            button_pause.Enabled = true;
+            button_resume.Enabled = false;
+            button_saveGenome.Enabled = false;
+            button_loadGenome.Enabled = false;
+
             StartGame();
         }
 
         private void button_pause_Click(object sender, EventArgs e)
         {
+            button_pause.Enabled = false;
+            button_resume.Enabled = true;
+            button_saveGenome.Enabled = true;
+            button_loadGenome.Enabled = true;
+
             PauseGame();
         }
 
@@ -161,6 +163,8 @@ namespace GeneticSphere
         {
             button_pause.Enabled = true;
             button_resume.Enabled = false;
+            button_saveGenome.Enabled = false;
+            button_loadGenome.Enabled = false;
 
             timer1.Start();
         }
@@ -172,14 +176,21 @@ namespace GeneticSphere
 
         private void button_saveGenome_Click(object sender, EventArgs e)
         {
+            button_saveGenome.Enabled = false;
+
             string genomeFileName = $"F{GameRules.MaxCountFood}_P{GameRules.MaxCountPoison}_W{GameRules.MaxCounWalls}_MCF{GameRules.MaxCoutnFrogs}_G{GameRules.Generation.ToString()}";
             _notebookSave.Save(GameRules.GenomeToSave, genomeFileName);
         }
 
         private void button_loadGenome_Click(object sender, EventArgs e)
-        {
-            string text = "";
-            text = _notebookLoad.Load();
+        {           
+            GameRules.StartWithLoadedGenome = true;
+            StartGame();
+
+            button_pause.Enabled = true;
+            button_resume.Enabled = false;
+            button_saveGenome.Enabled = false;
+            button_loadGenome.Enabled = false;
         }
     }
 }

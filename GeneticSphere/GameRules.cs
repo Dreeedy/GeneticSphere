@@ -39,6 +39,8 @@ namespace GeneticSphere
         public static int CountTurns { get; set; } = 0;
         // Разрешение (размер одной клетки в px) 
         public static int Resolution { get; set; } = 3;
+        //
+        public static bool StartWithLoadedGenome { get; set; } = false;
         #endregion
 
         #region FROGS
